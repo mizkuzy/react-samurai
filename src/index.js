@@ -10,9 +10,22 @@ const postsData = [
   { id: 3, text: "Vjuhhhh", likesNumber: 20 },
 ];
 
+const dialogueData = [
+  { id: 1, name: "Lucy" },
+  { id: 2, name: "Andre" },
+  { id: 3, name: "Olya" },
+  { id: 4, name: "Jack" },
+];
+
+const messagesData = [
+  { id: 1, text: "hi" },
+  { id: 2, text: "Let's go" },
+  { id: 3, text: "We should all be feminists" },
+];
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App posts={postsData} dialogues={dialogueData} messages={messagesData} />
   </React.StrictMode>,
   document.getElementById("root")
 );
