@@ -1,0 +1,6 @@
+.img_profile {
+  width: 150px;
+  height: 150px; /* Ширина и высота */
+  border-radius: 50%; /* Превращаем в круг */
+  background-size: auto 150px; /* Высота фотографии равна высоте элемента */
+}
