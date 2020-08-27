@@ -8,6 +8,7 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Dialogues from "./components/Dialogues/Dialogues";
+import { addPost } from "./redux/state";
 
 const App = ({ state }) => (
   <BrowserRouter>
@@ -16,12 +17,9 @@ const App = ({ state }) => (
       <Navbar />
       <main className="app-wrapper-content">
         <Route
-          path="/profile"
-          render={() => <Profile state={state.profile} />}
-        />
-        <Route
-          exact path="/"
-          render={() => <Profile state={state.profile} />}
+          exact
+          path={["/", "/profile"]}
+          render={() => <Profile state={state.profile} addPost={addPost} />}
         />
         <Route
           exact

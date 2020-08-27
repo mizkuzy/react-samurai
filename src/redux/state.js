@@ -1,8 +1,11 @@
+import { renderEntireTree } from "../render";
+
 const posts = [
   { id: 1, text: "I like your app", likesNumber: 5 },
   { id: 2, text: "Never give up", likesNumber: 2 },
   { id: 3, text: "Vjuhhhh", likesNumber: 20 },
 ];
+let nextPostId = 4;
 
 const dialogues = [
   { id: 1, name: "Lucy" },
@@ -23,6 +26,18 @@ const state = {
   },
   dialogues: { dialogues, messages },
   sidebar: {},
+};
+
+export const addPost = (text) => {
+  console.log(state);
+  const newPost = {
+    id: nextPostId,
+    text,
+  };
+  nextPostId += 1;
+  posts.push(newPost);
+
+  renderEntireTree(state);
 };
 
 export default state;
