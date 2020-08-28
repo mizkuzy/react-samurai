@@ -1,4 +1,4 @@
-import { renderEntireTree } from "../render";
+let rerenderEntireTree;
 
 const posts = [
   { id: 1, text: "I like your app", likesNumber: 5 },
@@ -38,12 +38,18 @@ export const addPost = () => {
   posts.push(newPost);
   state.profile.newPostText = "";
 
-  renderEntireTree(state);
+  rerenderEntireTree(state);
 };
 
 export const updateNewPostText = (text) => {
   state.profile.newPostText = text;
-  renderEntireTree(state);
+  rerenderEntireTree(state);
 };
 
 export default state;
+
+export const subscribe = (observer) => {
+  rerenderEntireTree = observer;
+};
+
+window.state = state;
