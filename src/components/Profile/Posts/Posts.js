@@ -2,13 +2,15 @@ import React from "react";
 import s from "./Posts.module.css";
 import Post from "./Post/Post";
 
-const Posts = ({ posts, addPost }) => {
+const Posts = ({ posts, newPostText, addPost, updateNewPostText }) => {
   const newPostElement = React.createRef();
 
   const addNewPost = () => {
-    let text = newPostElement.current.value;
-    addPost(text);
-    newPostElement.current.value = "";
+    addPost();
+  };
+
+  const onPostChange = () => {
+    updateNewPostText(newPostElement.current.value);
   };
 
   return (
@@ -16,7 +18,11 @@ const Posts = ({ posts, addPost }) => {
       <h3>My posts</h3>
       <div>
         <div>
-          <textarea ref={newPostElement}></textarea>
+          <textarea
+            value={newPostText}
+            onChange={onPostChange}
+            ref={newPostElement}
+          />
         </div>
         <div>
           <button onClick={addNewPost}>Add Post</button>

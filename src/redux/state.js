@@ -23,20 +23,26 @@ const messages = [
 const state = {
   profile: {
     posts,
+    newPostText: "",
   },
   dialogues: { dialogues, messages },
   sidebar: {},
 };
 
-export const addPost = (text) => {
-  console.log(state);
+export const addPost = () => {
   const newPost = {
     id: nextPostId,
-    text,
+    text: state.profile.newPostText,
   };
   nextPostId += 1;
   posts.push(newPost);
+  state.profile.newPostText = "";
 
+  renderEntireTree(state);
+};
+
+export const updateNewPostText = (text) => {
+  state.profile.newPostText = text;
   renderEntireTree(state);
 };
 
