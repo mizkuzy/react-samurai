@@ -11,6 +11,8 @@ import Dialogues from "./components/Dialogues/Dialogues";
 
 const App = ({ store }) => {
   const state = store.getState();
+  const dispatch = store.dispatch;
+
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -21,11 +23,7 @@ const App = ({ store }) => {
             exact
             path={["/", "/profile"]}
             render={() => (
-              <Profile
-                state={state.profile}
-                addPost={store.addPost.bind(store)}
-                updateNewPostText={store.updateNewPostText.bind(store)}
-              />
+              <Profile state={state.profile} dispatch={dispatch.bind(store)} />
             )}
           />
           <Route
