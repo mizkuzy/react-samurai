@@ -8,36 +8,38 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Dialogues from "./components/Dialogues/Dialogues";
-import { addPost, updateNewPostText } from "./redux/state";
 
-const App = ({ state }) => (
-  <BrowserRouter>
-    <div className="app-wrapper">
-      <Header />
-      <Navbar />
-      <main className="app-wrapper-content">
-        <Route
-          exact
-          path={["/", "/profile"]}
-          render={() => (
-            <Profile
-              state={state.profile}
-              addPost={addPost}
-              updateNewPostText={updateNewPostText}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/dialogues"
-          render={() => <Dialogues state={state.dialogues} />}
-        />
-        <Route path="/news" render={() => <News />} />
-        <Route path="/music" render={() => <Music />} />
-        <Route path="/settings" render={() => <Settings />} />
-      </main>
-    </div>
-  </BrowserRouter>
-);
+const App = ({ store }) => {
+  const state = store.getState();
+  return (
+    <BrowserRouter>
+      <div className="app-wrapper">
+        <Header />
+        <Navbar />
+        <main className="app-wrapper-content">
+          <Route
+            exact
+            path={["/", "/profile"]}
+            render={() => (
+              <Profile
+                state={state.profile}
+                addPost={store.addPost.bind(store)}
+                updateNewPostText={store.updateNewPostText.bind(store)}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/dialogues"
+            render={() => <Dialogues state={state.dialogues} />}
+          />
+          <Route path="/news" render={() => <News />} />
+          <Route path="/music" render={() => <Music />} />
+          <Route path="/settings" render={() => <Settings />} />
+        </main>
+      </div>
+    </BrowserRouter>
+  );
+};
 
 export default App;

@@ -1,20 +1,20 @@
 import React from "react";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import state, { subscribe } from "./redux/state";
+import store from "./redux/store";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-export const renderEntireTree = (state) =>
+export const renderEntireTree = (store) =>
   ReactDOM.render(
     <React.StrictMode>
-      <App state={state} />
+      <App store={store} />
     </React.StrictMode>,
     document.getElementById("root")
   );
 
-renderEntireTree(state);
-subscribe(renderEntireTree);
+renderEntireTree(store);
+store.setSubscriber(renderEntireTree);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
