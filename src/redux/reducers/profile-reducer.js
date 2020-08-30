@@ -1,6 +1,18 @@
 import { ADD_POST, UPDATE_NEW_POST_TEXT } from "../actionTypes";
 
-const profileReducer = (state, action) => {
+const posts = [
+  { id: 1, text: "I like your app", likesNumber: 5 },
+  { id: 2, text: "Never give up", likesNumber: 2 },
+  { id: 3, text: "Vjuhhhh", likesNumber: 20 },
+];
+
+const init = {
+  posts,
+  newPostText: "",
+  nextPostId: 4,
+};
+
+const profileReducer = (state = init, action) => {
   switch (action.type) {
     case ADD_POST:
       const id = state.nextPostId;
