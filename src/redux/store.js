@@ -1,3 +1,5 @@
+import { ADD_POST, UPDATE_NEW_POST_TEXT } from "./actionTypes";
+
 const posts = [
   { id: 1, text: "I like your app", likesNumber: 5 },
   { id: 2, text: "Never give up", likesNumber: 2 },
@@ -66,10 +68,10 @@ const store = {
 
   dispatch(action) {
     switch (action.type) {
-      case "ADD-POST":
+      case ADD_POST:
         this.addPost();
         break;
-      case "UPDATE-NEW-POST-TEXT":
+      case UPDATE_NEW_POST_TEXT:
         this.updateNewPostText(action.text);
         break;
       default:
