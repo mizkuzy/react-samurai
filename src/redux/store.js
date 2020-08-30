@@ -1,4 +1,9 @@
-import { ADD_POST, UPDATE_NEW_POST_TEXT } from "./actionTypes";
+import {
+  SEND_NEW_MESSAGE,
+  ADD_POST,
+  UPDATE_NEW_MESSAGE_TEXT,
+  UPDATE_NEW_POST_TEXT,
+} from "./actionTypes";
 
 const posts = [
   { id: 1, text: "I like your app", likesNumber: 5 },
@@ -26,7 +31,7 @@ const store = {
       posts,
       newPostText: "",
     },
-    dialogues: { dialogues, messages },
+    dialogues: { dialogues, messages, newMessageText: "" },
     sidebar: {},
   },
   _nextPostId: 4,
@@ -48,6 +53,12 @@ const store = {
   getNewProfilePostText() {
     return this._state.profile.newPostText;
   },
+  setNewDialoguesMessageText(text) {
+    this._state.dialogues.newMessageText = text;
+  },
+  getNewDialoguesMessageText() {
+    return this._state.dialogues.newMessageText;
+  },
   addPost() {
     const newPost = {
       id: this._nextPostId,
@@ -62,10 +73,24 @@ const store = {
   },
   updateNewPostText(text) {
     this.setNewProfilePostText(text);
-    this.getSubscriber(this);
     this._subscriber(this);
   },
+  updateNewMessageText(text) {
+    this.setNewDialoguesMessageText(text);
+    this._subscriber(this);
+  },
+  addNewMessage() {
+    const text = this.getNewDialoguesMessageText();
+    this._state.dialogues.messages.push({
+      id: 1,
+      text,
+    });
+    this._state.dialogues.messages.push(text);
 
+    this.setNewDialoguesMessageText("");
+
+    this._subscriber(this);
+  },
   dispatch(action) {
     switch (action.type) {
       case ADD_POST:
@@ -73,6 +98,12 @@ const store = {
         break;
       case UPDATE_NEW_POST_TEXT:
         this.updateNewPostText(action.text);
+        break;
+      case UPDATE_NEW_MESSAGE_TEXT:
+        this.updateNewMessageText(action.text);
+        break;
+      case SEND_NEW_MESSAGE:
+        this.addNewMessage();
         break;
       default:
         throw new Error("No such action type");

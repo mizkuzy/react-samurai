@@ -11,7 +11,7 @@ import Dialogues from "./components/Dialogues/Dialogues";
 
 const App = ({ store }) => {
   const state = store.getState();
-  const dispatch = store.dispatch;
+  const dispatch = store.dispatch.bind(store);
 
   return (
     <BrowserRouter>
@@ -22,14 +22,16 @@ const App = ({ store }) => {
           <Route
             exact
             path={["/", "/profile"]}
-            render={() => (
-              <Profile state={state.profile} dispatch={dispatch.bind(store)} />
-            )}
+            render={() => {
+              return <Profile state={state.profile} dispatch={dispatch} />;
+            }}
           />
           <Route
             exact
             path="/dialogues"
-            render={() => <Dialogues state={state.dialogues} />}
+            render={() => (
+              <Dialogues state={state.dialogues} dispatch={dispatch} />
+            )}
           />
           <Route path="/news" render={() => <News />} />
           <Route path="/music" render={() => <Music />} />

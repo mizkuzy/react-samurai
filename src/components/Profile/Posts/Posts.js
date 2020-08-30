@@ -26,6 +26,7 @@ const Posts = ({ posts, newPostText, dispatch }) => {
             value={newPostText}
             onChange={onPostChange}
             ref={newPostElement}
+            placeholder={"Type a post"}
           />
         </div>
         <div>
