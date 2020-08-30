@@ -1,9 +1,6 @@
-import {
-  SEND_NEW_MESSAGE,
-  ADD_POST,
-  UPDATE_NEW_MESSAGE_TEXT,
-  UPDATE_NEW_POST_TEXT,
-} from "./actionTypes";
+import profileReducer from "./reducers/profile-reducer";
+import dialoguesReducer from "./reducers/dialogues-reducer";
+import sidebarReducer from "./reducers/sidebar-reducer";
 
 const posts = [
   { id: 1, text: "I like your app", likesNumber: 5 },
@@ -30,87 +27,33 @@ const store = {
     profile: {
       posts,
       newPostText: "",
+      nextPostId: 4,
     },
     dialogues: { dialogues, messages, newMessageText: "" },
     sidebar: {},
   },
-  _nextPostId: 4,
   setSubscriber(subscriber) {
     this._subscriber = subscriber;
-  },
-  getSubscriber() {
-    return this._subscriber;
   },
   getState() {
     return this._state;
   },
-  setNextPostId(id) {
-    this._nextPostId = id;
-  },
-  setNewProfilePostText(text) {
-    this._state.profile.newPostText = text;
-  },
   getNewProfilePostText() {
     return this._state.profile.newPostText;
   },
-  setNewDialoguesMessageText(text) {
-    this._state.dialogues.newMessageText = text;
-  },
-  getNewDialoguesMessageText() {
-    return this._state.dialogues.newMessageText;
-  },
-  addPost() {
-    const newPost = {
-      id: this._nextPostId,
-      text: this.getNewProfilePostText(),
-    };
-    this.setNextPostId(this._nextPostId + 1);
-    this._state.profile.posts.push(newPost);
 
-    this.setNewProfilePostText("");
-
-    this._subscriber(this);
-  },
-  updateNewPostText(text) {
-    this.setNewProfilePostText(text);
-    this._subscriber(this);
-  },
-  updateNewMessageText(text) {
-    this.setNewDialoguesMessageText(text);
-    this._subscriber(this);
-  },
   addNewMessage() {
-    const text = this.getNewDialoguesMessageText();
-    this._state.dialogues.messages.push({
-      id: 1,
-      text,
-    });
-    this._state.dialogues.messages.push(text);
-
     this.setNewDialoguesMessageText("");
 
     this._subscriber(this);
   },
   dispatch(action) {
-    switch (action.type) {
-      case ADD_POST:
-        this.addPost();
-        break;
-      case UPDATE_NEW_POST_TEXT:
-        this.updateNewPostText(action.text);
-        break;
-      case UPDATE_NEW_MESSAGE_TEXT:
-        this.updateNewMessageText(action.text);
-        break;
-      case SEND_NEW_MESSAGE:
-        this.addNewMessage();
-        break;
-      default:
-        throw new Error("No such action type");
-    }
+    this._state.profile = profileReducer(this._state.profile, action);
+    this._state.dialogues = dialoguesReducer(this._state.dialogues, action);
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+    this._subscriber(this);
   },
 };
 
 export default store;
-
-window.store = store;
