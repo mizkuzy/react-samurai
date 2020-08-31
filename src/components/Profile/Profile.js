@@ -4,11 +4,11 @@ import Header from "./Header/Header";
 import Info from "./Info/Info";
 import PostsContainer from "./Posts/PostsContainer";
 
-const Profile = ({ store }) => (
+const Profile = () => (
   <main className={s.profile_content}>
     <Header />
     <Info />
-    <PostsContainer store={store} />
+    <PostsContainer />
   </main>
 );
 

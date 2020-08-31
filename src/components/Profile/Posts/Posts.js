@@ -3,7 +3,6 @@ import s from "./Posts.module.css";
 import Post from "./Post/Post";
 
 const Posts = ({ posts, newPostText, addPost, updateNewPostText }) => {
-
   const onAddPost = () => {
     addPost();
   };
@@ -29,7 +28,7 @@ const Posts = ({ posts, newPostText, addPost, updateNewPostText }) => {
       </div>
       <div className={s.posts}>
         {posts.map((p) => (
-          <Post text={p.text} likesNumber={p.likesNumber} />
+          <Post text={p.text} likesNumber={p.likesNumber} postNumber={p.id} />
         ))}
       </div>
     </div>
