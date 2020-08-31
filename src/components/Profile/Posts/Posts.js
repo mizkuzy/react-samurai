@@ -1,20 +1,15 @@
 import React from "react";
 import s from "./Posts.module.css";
 import Post from "./Post/Post";
-import {
-  addPostActionCreator,
-  onUpdateNewPostTextActionCreator,
-} from "../../../redux/actionCreators";
 
-const Posts = ({ posts, newPostText, dispatch }) => {
-  const newPostElement = React.createRef();
+const Posts = ({ posts, newPostText, addPost, updateNewPostText }) => {
 
-  const addNewPost = () => {
-    dispatch(addPostActionCreator());
+  const onAddPost = () => {
+    addPost();
   };
 
-  const onPostChange = () => {
-    dispatch(onUpdateNewPostTextActionCreator(newPostElement.current.value));
+  const onNewPostTextChange = (e) => {
+    updateNewPostText(e.target.value);
   };
 
   return (
@@ -24,13 +19,12 @@ const Posts = ({ posts, newPostText, dispatch }) => {
         <div>
           <textarea
             value={newPostText}
-            onChange={onPostChange}
-            ref={newPostElement}
+            onChange={onNewPostTextChange}
             placeholder={"Type a post"}
           />
         </div>
         <div>
-          <button onClick={addNewPost}>Add Post</button>
+          <button onClick={onAddPost}>Add Post</button>
         </div>
       </div>
       <div className={s.posts}>
