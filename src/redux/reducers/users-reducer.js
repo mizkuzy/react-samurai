@@ -1,32 +1,7 @@
 import { FOLLOW_USER, SET_USERS, UNFOLLOW_USER } from "../actionTypes";
 
-const users = [
-  {
-    id: 1,
-    followed: false,
-    avaUrl: "",
-    fullName: "Lucy Ru",
-    status: "Happy",
-    location: { city: "Saint Petersburg", country: "Russia" },
-  },
-  {
-    id: 2,
-    followed: true,
-    fullName: "Andrew Ru",
-    status: "Happy",
-    location: { city: "Saint Petersburg", country: "Russia" },
-  },
-  {
-    id: 3,
-    followed: true,
-    fullName: "Anna Mel",
-    status: "ЖывЕ Беларусь!",
-    location: { city: "Minsk", country: "Belarus" },
-  },
-];
-
 const init = {
-  users,
+  users: [],
 };
 
 const usersReducer = (state = init, action) => {

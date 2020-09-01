@@ -1,5 +1,7 @@
 import React from "react";
 import s from "./UserItem.module.css";
+import { get as _get } from "lodash";
+import defaultAvatarImage from "../../../assets/owly.png";
 
 const FollowToggleButton = ({ name, action }) => {
   return <button onClick={action}>{name}</button>;
@@ -14,16 +16,12 @@ const UserItem = ({ user, followUser, unfollowUser }) => {
     unfollowUser(user.id);
   };
 
+  const imageSource = _get(user, "photo.small", defaultAvatarImage);
+
   return (
     <>
       <div>
-        <img
-          className={s.user_ava_container}
-          src={
-            "https://images.pexels.com/photos/1013335/pexels-photo-1013335.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-          }
-          alt={"ava"}
-        />
+        <img className={s.user_ava_container} src={imageSource} alt={"ava"} />
         <div>
           {user.followed === true ? (
             <FollowToggleButton
@@ -42,12 +40,12 @@ const UserItem = ({ user, followUser, unfollowUser }) => {
       </div>
       <div className={s.user_info}>
         <div>
-          <div>{user.fullName}</div>
+          <div>{user.name}</div>
           <div>{user.status}</div>
         </div>
         <div>
-          <div>{user.location.country}</div>
-          <div>{user.location.city}</div>
+          <div>{_get(user, "location.country", "DEFAULT COUNTRY")}</div>
+          <div>{_get(user, "location.city", "DEFAULT CITY")}</div>
         </div>
       </div>
     </>
