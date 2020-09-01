@@ -1,6 +1,6 @@
 import {
   sendNewMessageActionCreator,
-  onUpdateNewMessageTextActionCreator,
+  updateNewMessageTextActionCreator,
 } from "../../redux/actionCreators";
 import Dialogues from "./Dialogues";
 import { connect } from "react-redux";
@@ -16,7 +16,7 @@ const mapsToDispatch = (dispatch) => ({
     dispatch(sendNewMessageActionCreator());
   },
   updateNewMessageText: (text) => {
-    dispatch(onUpdateNewMessageTextActionCreator(text));
+    dispatch(updateNewMessageTextActionCreator(text));
   },
 });
 

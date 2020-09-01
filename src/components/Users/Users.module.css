@@ -1,0 +1,9 @@
+.content {
+  padding: 20px 350px 20px 20px;
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+
+.users_content {
+  padding: 10px;
+}
