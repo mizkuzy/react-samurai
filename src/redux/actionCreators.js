@@ -8,6 +8,7 @@ import {
   SET_USERS,
   SET_TOTAL_USERS_COUNT,
   UPDATE_PAGE_NUMBER,
+  SET_IS_FETCHING,
 } from "./actionTypes";
 
 export const addPostActionCreator = () => ({
@@ -48,4 +49,9 @@ export const followUserAC = (uid) => ({
 export const unfollowUserAC = (uid) => ({
   type: UNFOLLOW_USER,
   uid,
+});
+
+export const setIsFetchingAC = (isFetching) => ({
+  type: SET_IS_FETCHING,
+  isFetching,
 });

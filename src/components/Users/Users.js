@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./Users.module.css";
 import UserItem from "./UserItem/UserItem";
+import LoadingSpinner from "../Common/LoadingSpinner";
 
 const Paging = ({
   totalElementsNumber,
@@ -16,7 +17,6 @@ const Paging = ({
       <span
         key={p}
         onClick={() => {
-            debugger
           onChangePage(normalisedPageNumber);
         }}
         className={
@@ -37,27 +37,30 @@ const Users = ({
   users,
   followUser,
   unfollowUser,
+  isFetching,
 }) => {
   return (
-    <div className={s.users_content}>
-      <h3>Users</h3>
-      <Paging
-        totalElementsNumber={totalUsersCount}
-        pageSize={pageSize}
-        pageNumber={pageNumber}
-        onChangePage={onChangePage}
-      />
-      <div className={s.content}>
-        {users.map((u) => (
-          <UserItem
-            key={u.id}
-            user={u}
-            followUser={followUser}
-            unfollowUser={unfollowUser}
-          />
-        ))}
+    <>
+      {isFetching && <LoadingSpinner />}
+      <div className={s.users_content}>
+        <Paging
+          totalElementsNumber={totalUsersCount}
+          pageSize={pageSize}
+          pageNumber={pageNumber}
+          onChangePage={onChangePage}
+        />
+        <div className={s.content}>
+          {users.map((u) => (
+            <UserItem
+              key={u.id}
+              user={u}
+              followUser={followUser}
+              unfollowUser={unfollowUser}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

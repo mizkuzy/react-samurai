@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import {
   followUserAC,
+  setIsFetchingAC,
   setTotalUsersCountAC,
   setUsersAC,
   unfollowUserAC,
@@ -13,6 +14,7 @@ import Users from "./Users";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
+    this.props.setIsFetching(true);
     this.fetchUsers(this.props.pageNumber);
   }
 
@@ -22,10 +24,12 @@ class UsersContainer extends React.Component {
     axios.get(usersUrl).then((response) => {
       this.props.setTotalUsersCount(response.data.totalCount);
       this.props.setUsers(response.data.items);
+      this.props.setIsFetching(false);
     });
   }
 
   onChangePage = (pageNumber) => {
+    this.props.setIsFetching(true);
     this.props.updatePageNumber(pageNumber);
     this.fetchUsers(pageNumber);
   };
@@ -40,6 +44,8 @@ class UsersContainer extends React.Component {
         users={this.props.users}
         followUser={this.props.followUser}
         unfollowUser={this.props.unfollowUser}
+        isFetching={this.props.isFetching}
+        setIsFetching={this.props.setIsFetching}
       />
     );
   }
@@ -52,6 +58,7 @@ const mapStateToProps = (state) => {
     totalUsersCount: usersPage.totalUsersCount,
     pageSize: usersPage.pageSize,
     pageNumber: usersPage.pageNumber,
+    isFetching: usersPage.isFetching,
   };
 };
 
@@ -71,6 +78,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updatePageNumber: (number) => {
       dispatch(updatePageNumberAC(number));
+    },
+    setIsFetching: (isFetching) => {
+      dispatch(setIsFetchingAC(isFetching));
     },
   };
 };

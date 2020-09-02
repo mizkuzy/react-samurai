@@ -2,12 +2,14 @@ import {
   FOLLOW_USER,
   SET_TOTAL_USERS_COUNT,
   SET_USERS,
+  SET_IS_FETCHING,
   UNFOLLOW_USER,
   UPDATE_PAGE_NUMBER,
 } from "../actionTypes";
 
 const init = {
   users: [],
+  isFetching: false,
   totalUsersCount: null,
   pageSize: 7,
   pageNumber: 1,
@@ -49,6 +51,11 @@ const usersReducer = (state = init, action) => {
       return {
         ...state,
         pageNumber: action.number,
+      };
+    case SET_IS_FETCHING:
+      return {
+        ...state,
+        isFetching: action.isFetching,
       };
     default:
       return state;
