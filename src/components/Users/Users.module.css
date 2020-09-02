@@ -7,3 +7,7 @@
 .users_content {
   padding: 10px;
 }
+
+.selected_page {
+  font-weight: bold;
+}

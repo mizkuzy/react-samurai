@@ -2,12 +2,20 @@ import { connect } from "react-redux";
 import Users from "./Users";
 import {
   followUserAC,
+  setTotalUsersCountAC,
   setUsersAC,
   unfollowUserAC,
+  updatePageNumberAC,
 } from "../../redux/actionCreators";
 
 const mapStateToProps = (state) => {
-  return { users: state.users.users };
+  const usersPage = state.users;
+  return {
+    users: usersPage.users,
+    totalUsersCount: usersPage.totalUsersCount,
+    pageSize: usersPage.pageSize,
+    pageNumber: usersPage.pageNumber,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -20,6 +28,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     unfollowUser: (uid) => {
       dispatch(unfollowUserAC(uid));
+    },
+    setTotalUsersCount: (number) => {
+      dispatch(setTotalUsersCountAC(number));
+    },
+    updatePageNumber: (number) => {
+      dispatch(updatePageNumberAC(number));
     },
   };
 };

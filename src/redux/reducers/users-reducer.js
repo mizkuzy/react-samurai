@@ -1,7 +1,16 @@
-import { FOLLOW_USER, SET_USERS, UNFOLLOW_USER } from "../actionTypes";
+import {
+  FOLLOW_USER,
+  SET_TOTAL_USERS_COUNT,
+  SET_USERS,
+  UNFOLLOW_USER,
+  UPDATE_PAGE_NUMBER,
+} from "../actionTypes";
 
 const init = {
   users: [],
+  totalUsersCount: null,
+  pageSize: 7,
+  pageNumber: 1,
 };
 
 const usersReducer = (state = init, action) => {
@@ -29,9 +38,18 @@ const usersReducer = (state = init, action) => {
     case SET_USERS:
       return {
         ...state,
-        users: [...state.users, ...action.users],
+        users: [...action.users],
       };
-
+    case SET_TOTAL_USERS_COUNT:
+      return {
+        ...state,
+        totalUsersCount: action.number,
+      };
+    case UPDATE_PAGE_NUMBER:
+      return {
+        ...state,
+        pageNumber: action.number,
+      };
     default:
       return state;
   }

@@ -6,6 +6,8 @@ import {
   FOLLOW_USER,
   UNFOLLOW_USER,
   SET_USERS,
+  SET_TOTAL_USERS_COUNT,
+  UPDATE_PAGE_NUMBER,
 } from "./actionTypes";
 
 export const addPostActionCreator = () => ({
@@ -29,6 +31,14 @@ export const updateNewMessageTextActionCreator = (text) => ({
 export const setUsersAC = (users) => ({
   type: SET_USERS,
   users,
+});
+export const setTotalUsersCountAC = (number) => ({
+  type: SET_TOTAL_USERS_COUNT,
+  number,
+});
+export const updatePageNumberAC = (number) => ({
+  type: UPDATE_PAGE_NUMBER,
+  number,
 });
 export const followUserAC = (uid) => ({
   type: FOLLOW_USER,
