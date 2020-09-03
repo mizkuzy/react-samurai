@@ -4,10 +4,12 @@ import { PROFILE_URL } from "../../util/api-urls";
 import Profile from "./Profile";
 import { connect } from "react-redux";
 import { setProfile } from "../../redux/actionCreators";
-
+import { withRouter } from "react-router-dom";
+import { get as _get } from "lodash";
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    const profileUrl = `${PROFILE_URL}/2`;
+    const userId = _get(this.props, "match.params.userId", 2);
+    const profileUrl = `${PROFILE_URL}/${userId}`;
 
     axios.get(profileUrl).then((response) => {
       const profile = response.data;
@@ -25,6 +27,9 @@ const mapStateToProps = (state) => {
     profile: state.profile.profile,
   };
 };
+
+const withRouterProfileContainer = withRouter(ProfileContainer);
+
 export default connect(mapStateToProps, {
   setProfile,
-})(ProfileContainer);
+})(withRouterProfileContainer);

@@ -17,7 +17,7 @@ const App = () => (
     <main className="app-wrapper-content">
       <Route
         exact
-        path={["/", "/profile"]}
+        path={["/", "/profile/:userId?"]}
         render={() => {
           return <ProfileContainer />;
         }}

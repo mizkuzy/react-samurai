@@ -11,6 +11,7 @@ const Info = ({ profile }) => (
         className={s.img_profile}
         src={_get(profile, "photos.small", DEFAULT_PROFILE_AVATAR_SRC)}
       />
+      <p>{profile.fullName}</p>
       <p>{profile.aboutMe}</p>
     </div>
   </>
