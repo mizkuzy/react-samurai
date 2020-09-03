@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Header.module.css";
 
-const Header = () => <div className={s.hero_image}></div>;
+const Header = ({ imageSrc }) => <img alt={"profile_hero"} src={imageSrc} />;
 
 export default Header;

@@ -1,4 +1,4 @@
-import { ADD_POST, UPDATE_NEW_POST_TEXT } from "../actionTypes";
+import { ADD_POST, SET_PROFILE, UPDATE_NEW_POST_TEXT } from "../actionTypes";
 
 const posts = [
   { id: 1, text: "I like your app", likesNumber: 5 },
@@ -10,6 +10,7 @@ const init = {
   posts,
   newPostText: "",
   nextPostId: 4,
+  profile: null,
 };
 
 const profileReducer = (state = init, action) => {
@@ -31,6 +32,11 @@ const profileReducer = (state = init, action) => {
       return {
         ...state,
         newPostText: action.text,
+      };
+    case SET_PROFILE:
+      return {
+        ...state,
+        profile: action.profile,
       };
     default:
       return state;

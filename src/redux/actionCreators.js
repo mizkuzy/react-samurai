@@ -9,7 +9,13 @@ import {
   SET_TOTAL_USERS_COUNT,
   UPDATE_PAGE_NUMBER,
   SET_IS_FETCHING,
+  SET_PROFILE,
 } from "./actionTypes";
+
+export const setProfile = (profile) => ({
+  type: SET_PROFILE,
+  profile,
+});
 
 export const addPost = () => ({
   type: ADD_POST,

@@ -3,13 +3,23 @@ import s from "./Profile.module.css";
 import Header from "./Header/Header";
 import Info from "./Info/Info";
 import PostsContainer from "./Posts/PostsContainer";
+import LoadingSpinner from "../Common/LoadingSpinner";
+import { get as _get } from "lodash";
 
-const Profile = () => (
-  <main className={s.profile_content}>
-    <Header />
-    <Info />
-    <PostsContainer />
-  </main>
-);
+const Profile = ({ profile }) => {
+  return (
+    <main className={s.profile_content}>
+      {!profile && <LoadingSpinner />}
+
+      {profile && (
+        <>
+          <Header imageSrc={_get(profile, "photos.large")} />
+          <Info profile={profile} />
+          <PostsContainer />
+        </>
+      )}
+    </main>
+  );
+};
 
 export default Profile;

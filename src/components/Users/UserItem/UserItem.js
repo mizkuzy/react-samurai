@@ -2,6 +2,7 @@ import React from "react";
 import s from "./UserItem.module.css";
 import { get as _get } from "lodash";
 import defaultAvatarImage from "../../../assets/owly.png";
+import { NavLink } from "react-router-dom";
 
 const FollowToggleButton = ({ name, action }) => {
   return <button onClick={action}>{name}</button>;
@@ -21,7 +22,9 @@ const UserItem = ({ user, followUser, unfollowUser }) => {
   return (
     <>
       <div>
-        <img className={s.user_ava_container} src={imageSource} alt={"ava"} />
+        <NavLink to={`/profile/${user.id}`}>
+          <img className={s.user_ava_container} src={imageSource} alt={"ava"} />
+        </NavLink>
         <div>
           {user.followed === true ? (
             <FollowToggleButton
