@@ -11,47 +11,47 @@ import {
   SET_IS_FETCHING,
 } from "./actionTypes";
 
-export const addPostActionCreator = () => ({
+export const addPost = () => ({
   type: ADD_POST,
 });
 
-export const onUpdateNewPostTextActionCreator = (text) => ({
+export const onUpdateNewPostText = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   text,
 });
 
-export const sendNewMessageActionCreator = () => ({
+export const sendMessage = () => ({
   type: SEND_NEW_MESSAGE,
 });
 
-export const updateNewMessageTextActionCreator = (text) => ({
+export const updateNewMessageText = (text) => ({
   type: UPDATE_NEW_MESSAGE_TEXT,
   text,
 });
 
-export const setUsersAC = (users) => ({
+export const setUsers = (users) => ({
   type: SET_USERS,
   users,
 });
-export const setTotalUsersCountAC = (number) => ({
+export const setTotalUsersCount = (number) => ({
   type: SET_TOTAL_USERS_COUNT,
   number,
 });
-export const updatePageNumberAC = (number) => ({
+export const updatePageNumber = (number) => ({
   type: UPDATE_PAGE_NUMBER,
   number,
 });
-export const followUserAC = (uid) => ({
+export const followUser = (uid) => ({
   type: FOLLOW_USER,
   uid,
 });
 
-export const unfollowUserAC = (uid) => ({
+export const unfollowUser = (uid) => ({
   type: UNFOLLOW_USER,
   uid,
 });
 
-export const setIsFetchingAC = (isFetching) => ({
+export const setIsFetching = (isFetching) => ({
   type: SET_IS_FETCHING,
   isFetching,
 });

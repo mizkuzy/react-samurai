@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 import {
-  followUserAC,
-  setIsFetchingAC,
-  setTotalUsersCountAC,
-  setUsersAC,
-  unfollowUserAC,
-  updatePageNumberAC,
+  followUser,
+  setIsFetching,
+  setTotalUsersCount,
+  setUsers,
+  unfollowUser,
+  updatePageNumber,
 } from "../../redux/actionCreators";
 import React from "react";
 import { USERS_URL } from "../../util/api-urls";
@@ -62,27 +62,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setUsers: (users) => {
-      dispatch(setUsersAC(users));
-    },
-    followUser: (uid) => {
-      dispatch(followUserAC(uid));
-    },
-    unfollowUser: (uid) => {
-      dispatch(unfollowUserAC(uid));
-    },
-    setTotalUsersCount: (number) => {
-      dispatch(setTotalUsersCountAC(number));
-    },
-    updatePageNumber: (number) => {
-      dispatch(updatePageNumberAC(number));
-    },
-    setIsFetching: (isFetching) => {
-      dispatch(setIsFetchingAC(isFetching));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+  setUsers,
+  followUser,
+  unfollowUser,
+  setTotalUsersCount,
+  updatePageNumber,
+  setIsFetching,
+})(UsersContainer);

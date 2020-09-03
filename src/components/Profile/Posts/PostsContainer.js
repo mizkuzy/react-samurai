@@ -1,7 +1,4 @@
-import {
-  addPostActionCreator,
-  onUpdateNewPostTextActionCreator,
-} from "../../../redux/actionCreators";
+import { addPost, onUpdateNewPostText } from "../../../redux/actionCreators";
 import Posts from "./Posts";
 import { connect } from "react-redux";
 
@@ -12,9 +9,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  addPost: () => dispatch(addPostActionCreator()),
-  updateNewPostText: (text) => dispatch(onUpdateNewPostTextActionCreator(text)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+export default connect(mapStateToProps, {
+  addPost,
+  onUpdateNewPostText,
+})(Posts);
