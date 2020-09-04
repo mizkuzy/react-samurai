@@ -11,3 +11,6 @@ export const SET_USERS = "SET-USERS";
 export const SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT";
 export const UPDATE_PAGE_NUMBER = "UPDATE-PAGE-NUMBER";
 export const SET_IS_FETCHING = "SET-IS-FETCHING";
+
+export const AUTH_USER = "AUTH-USER";
+export const LOGOUT_USER = "LOGOUT-USER";

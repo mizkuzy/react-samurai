@@ -10,6 +10,8 @@ import {
   UPDATE_PAGE_NUMBER,
   SET_IS_FETCHING,
   SET_PROFILE,
+  AUTH_USER,
+  LOGOUT_USER,
 } from "./actionTypes";
 
 export const setProfile = (profile) => ({
@@ -60,4 +62,17 @@ export const unfollowUser = (uid) => ({
 export const setIsFetching = (isFetching) => ({
   type: SET_IS_FETCHING,
   isFetching,
+});
+
+export const authenticateUser = (userId, email, login) => ({
+  type: AUTH_USER,
+  payload: {
+    userId,
+    email,
+    login,
+  },
+});
+
+export const logoutUser = () => ({
+  type: LOGOUT_USER,
 });
