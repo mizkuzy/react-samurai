@@ -7,6 +7,5 @@
   width: 100px;
   height: 100px; /* Ширина и высота */
   border-radius: 50%; /* Превращаем в круг */
-  /*background: url(/example/image/shark.jpg) no-repeat -70px 0; !* Параметры фона *!*/
   background-size: auto 100px; /* Высота фотографии равна высоте элемента */
 }

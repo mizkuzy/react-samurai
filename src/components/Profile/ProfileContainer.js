@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { setProfile } from "../../redux/actionCreators";
 import { withRouter } from "react-router-dom";
 import { get as _get } from "lodash";
+
 class ProfileContainer extends React.Component {
   componentDidMount() {
     const userId = _get(this.props, "match.params.userId", 2);

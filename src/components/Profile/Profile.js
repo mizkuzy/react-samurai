@@ -8,7 +8,7 @@ import { get as _get } from "lodash";
 
 const Profile = ({ profile }) => {
   return (
-    <main className={s.profile_content}>
+    <main className={s.profileContent}>
       {!profile && <LoadingSpinner />}
 
       {profile && (

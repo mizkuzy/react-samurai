@@ -19,7 +19,7 @@ const Dialogues = ({
   };
 
   return (
-    <div className={s.dialogues_content}>
+    <div className={s.dialoguesContent}>
       <div className={s.dialogues}>
         {dialogues.map((dd) => (
           <DialogueItem name={dd.name} urlId={dd.id} />

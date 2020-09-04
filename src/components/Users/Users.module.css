@@ -4,10 +4,10 @@
   grid-template-columns: 2fr 10fr;
 }
 
-.users_content {
+.usersContent {
   padding: 10px;
 }
 
-.selected_page {
+.selectedPage {
   font-weight: bold;
 }

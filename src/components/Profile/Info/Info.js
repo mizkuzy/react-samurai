@@ -8,7 +8,7 @@ const Info = ({ profile }) => (
     <div>
       <img
         alt={"Profile Avatar"}
-        className={s.img_profile}
+        className={s.imgProfile}
         src={_get(profile, "photos.small", DEFAULT_PROFILE_AVATAR_SRC)}
       />
       <p>{profile.fullName}</p>

@@ -20,7 +20,7 @@ const Paging = ({
           onChangePage(normalisedPageNumber);
         }}
         className={
-          (pageNumber === normalisedPageNumber && s.selected_page) || ""
+          (pageNumber === normalisedPageNumber && s.selectedPage) || ""
         }
       >
         {normalisedPageNumber}{" "}
@@ -42,7 +42,7 @@ const Users = ({
   return (
     <>
       {isFetching && <LoadingSpinner />}
-      <div className={s.users_content}>
+      <div className={s.usersContent}>
         <Paging
           totalElementsNumber={totalUsersCount}
           pageSize={pageSize}
