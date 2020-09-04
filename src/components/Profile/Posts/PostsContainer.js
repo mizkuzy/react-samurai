@@ -1,4 +1,4 @@
-import { addPost, onUpdateNewPostText } from "../../../redux/actionCreators";
+import { addPost, updateNewPostText } from "../../../redux/actionCreators";
 import Posts from "./Posts";
 import { connect } from "react-redux";
 
@@ -11,5 +11,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   addPost,
-  onUpdateNewPostText,
+  updateNewPostText,
 })(Posts);
