@@ -7,7 +7,7 @@ import {
   getUsers,
   unfollowUser,
 } from "../../redux/thunks";
-import { Redirect } from "react-router-dom";
+import withLoginRedirect from "../../hoc/withLoginRedirect";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -19,10 +19,6 @@ class UsersContainer extends React.Component {
   };
 
   render() {
-    if (!this.props.isAuth) {
-      return <Redirect to={"/login"} />;
-    }
-
     return (
       <Users
         totalUsersCount={this.props.totalUsersCount}
@@ -38,10 +34,11 @@ class UsersContainer extends React.Component {
   }
 }
 
+const withLoginRedirectUsersContainer = withLoginRedirect(UsersContainer);
+
 const mapStateToProps = (state) => {
   const usersPage = state.users;
   return {
-    isAuth: state.auth.isAuth,
     users: usersPage.users,
     totalUsersCount: usersPage.totalUsersCount,
     pageSize: usersPage.pageSize,
@@ -55,4 +52,4 @@ export default connect(mapStateToProps, {
   unfollowUser,
   getUsers,
   changePage,
-})(UsersContainer);
+})(withLoginRedirectUsersContainer);
