@@ -32,19 +32,22 @@ export const profileApi = {
 };
 
 export const usersApi = {
-  getUsers(pageSize = 10, pageNumber = 1) {
+  async getUsers(pageSize = 10, pageNumber = 1) {
     const url = `${USERS_PATH}?page=${pageNumber}&count=${pageSize}`;
 
-    return instance.get(url).then((response) => response.data);
+    const response = await instance.get(url);
+    return response.data;
   },
-  followUser(uid) {
+  async followUser(uid) {
     const url = `${FOLLOW_PATH}/${uid}`;
 
-    return instance.post(url).then((response) => response.data);
+    const response = await instance.post(url);
+    return response.data;
   },
-  unfollowUser(uid) {
+  async unfollowUser(uid) {
     const url = `${FOLLOW_PATH}/${uid}`;
 
-    return instance.delete(url).then((response) => response.data);
+    const response = await instance.delete(url);
+    return response.data;
   },
 };

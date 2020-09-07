@@ -23,13 +23,14 @@ export const processProfile = (uid) => async (dispatch) => {
   dispatch(setProfile(profile));
 };
 
-export const getUsers = (pageSize, pageNumber) => (dispatch) => {
+export const getUsers = (pageSize, pageNumber) => async (dispatch) => {
   dispatch(setIsFetching(true));
-  usersApi.getUsers(pageSize, pageNumber).then((response) => {
-    dispatch(setTotalUsersCount(response.totalCount));
-    dispatch(setUsers(response.items));
-    dispatch(setIsFetching(false));
-  });
+
+  const response = await usersApi.getUsers(pageSize, pageNumber);
+
+  dispatch(setTotalUsersCount(response.totalCount));
+  dispatch(setUsers(response.items));
+  dispatch(setIsFetching(false));
 };
 
 export const changePage = (pageSize, pageNumber) => (dispatch) => {
@@ -37,22 +38,22 @@ export const changePage = (pageSize, pageNumber) => (dispatch) => {
   dispatch(updatePageNumber(pageNumber));
 };
 
-export const followUser = (uid) => (dispatch) => {
-  usersApi.followUser(uid).then((response) => {
-    if (response.resultCode === 0) {
-      dispatch(setFollowUser(uid));
-    } else {
-      throw new Error(`Server Error. User ${uid} was not followed.`);
-    }
-  });
+export const followUser = (uid) => async (dispatch) => {
+  const response = await usersApi.followUser(uid);
+
+  if (response.resultCode === 0) {
+    dispatch(setFollowUser(uid));
+  } else {
+    throw new Error(`Server Error. User ${uid} was not followed.`);
+  }
 };
 
-export const unfollowUser = (uid) => (dispatch) => {
-  usersApi.unfollowUser(uid).then((response) => {
-    if (response.resultCode === 0) {
-      dispatch(setUnfollowUser(uid));
-    } else {
-      throw new Error(`Server Error. User ${uid} was not unfollowed.`);
-    }
-  });
+export const unfollowUser = (uid) => async (dispatch) => {
+  const response = await usersApi.unfollowUser(uid);
+
+  if (response.resultCode === 0) {
+    dispatch(setUnfollowUser(uid));
+  } else {
+    throw new Error(`Server Error. User ${uid} was not unfollowed.`);
+  }
 };
