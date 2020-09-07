@@ -6,6 +6,7 @@ const mapsToProps = (state) => ({
   dialogues: state.dialogues.dialogues,
   messages: state.dialogues.messages,
   newMessageText: state.dialogues.newMessageText,
+  isAuth: state.auth.isAuth
 });
 
 export default connect(mapsToProps, {

@@ -1,7 +1,13 @@
 import { connect } from "react-redux";
 import React from "react";
 import Users from "./Users";
-import {changePage, followUser, getUsers, unfollowUser} from "../../redux/thunks";
+import {
+  changePage,
+  followUser,
+  getUsers,
+  unfollowUser,
+} from "../../redux/thunks";
+import { Redirect } from "react-router-dom";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -13,6 +19,10 @@ class UsersContainer extends React.Component {
   };
 
   render() {
+    if (!this.props.isAuth) {
+      return <Redirect to={"/login"} />;
+    }
+
     return (
       <Users
         totalUsersCount={this.props.totalUsersCount}
@@ -31,6 +41,7 @@ class UsersContainer extends React.Component {
 const mapStateToProps = (state) => {
   const usersPage = state.users;
   return {
+    isAuth: state.auth.isAuth,
     users: usersPage.users,
     totalUsersCount: usersPage.totalUsersCount,
     pageSize: usersPage.pageSize,

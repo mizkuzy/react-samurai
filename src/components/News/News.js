@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./News.module.css";
 
+// todo add redirect
 const News = () => <div>news</div>;
 export default News;
