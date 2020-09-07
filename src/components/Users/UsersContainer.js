@@ -1,37 +1,15 @@
 import { connect } from "react-redux";
-import {
-  followUser,
-  setIsFetching,
-  setTotalUsersCount,
-  setUsers,
-  unfollowUser,
-  updatePageNumber,
-} from "../../redux/actionCreators";
 import React from "react";
-import { USERS_URL } from "../../util/api-urls";
-import * as axios from "axios";
 import Users from "./Users";
+import {changePage, followUser, getUsers, unfollowUser} from "../../redux/thunks";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.setIsFetching(true);
-    this.fetchUsers(this.props.pageNumber);
-  }
-
-  fetchUsers(pageNumber) {
-    const usersUrl = `${USERS_URL}?count=${this.props.pageSize}&page=${pageNumber}`;
-
-    axios.get(usersUrl).then((response) => {
-      this.props.setTotalUsersCount(response.data.totalCount);
-      this.props.setUsers(response.data.items);
-      this.props.setIsFetching(false);
-    });
+    this.props.getUsers(this.props.pageNumber, this.props.pageSize);
   }
 
   onChangePage = (pageNumber) => {
-    this.props.setIsFetching(true);
-    this.props.updatePageNumber(pageNumber);
-    this.fetchUsers(pageNumber);
+    this.props.changePage(this.props.pageSize, pageNumber);
   };
 
   render() {
@@ -45,7 +23,6 @@ class UsersContainer extends React.Component {
         followUser={this.props.followUser}
         unfollowUser={this.props.unfollowUser}
         isFetching={this.props.isFetching}
-        setIsFetching={this.props.setIsFetching}
       />
     );
   }
@@ -63,10 +40,8 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  setUsers,
   followUser,
   unfollowUser,
-  setTotalUsersCount,
-  updatePageNumber,
-  setIsFetching,
+  getUsers,
+  changePage,
 })(UsersContainer);

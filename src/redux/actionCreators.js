@@ -49,12 +49,12 @@ export const updatePageNumber = (number) => ({
   type: UPDATE_PAGE_NUMBER,
   number,
 });
-export const followUser = (uid) => ({
+export const setFollowUser = (uid) => ({
   type: FOLLOW_USER,
   uid,
 });
 
-export const unfollowUser = (uid) => ({
+export const setUnfollowUser = (uid) => ({
   type: UNFOLLOW_USER,
   uid,
 });
