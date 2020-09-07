@@ -10,7 +10,7 @@ import {
 } from "./actionCreators";
 import { authApi, profileApi, usersApi } from "../api/api";
 
-export const authenticate = () => async (dispatch) => {
+export const getAuthUserData = () => async (dispatch) => {
   const response = await authApi.me();
   if (response.resultCode === 0) {
     const { id, email, login } = response.data;
