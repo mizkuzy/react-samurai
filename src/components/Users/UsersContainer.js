@@ -1,5 +1,6 @@
-import { connect } from "react-redux";
 import React from "react";
+import { compose } from "redux";
+import { connect } from "react-redux";
 import Users from "./Users";
 import {
   changePage,
@@ -34,8 +35,6 @@ class UsersContainer extends React.Component {
   }
 }
 
-const withLoginRedirectUsersContainer = withLoginRedirect(UsersContainer);
-
 const mapStateToProps = (state) => {
   const usersPage = state.users;
   return {
@@ -47,9 +46,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  followUser,
-  unfollowUser,
-  getUsers,
-  changePage,
-})(withLoginRedirectUsersContainer);
+export default compose(
+  withLoginRedirect,
+  connect(mapStateToProps, {
+    followUser,
+    unfollowUser,
+    getUsers,
+    changePage,
+  })
+)(UsersContainer);

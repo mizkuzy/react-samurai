@@ -1,9 +1,10 @@
 import React from "react";
-import Profile from "./Profile";
+import { compose } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { get as _get } from "lodash";
 import { processProfile } from "../../redux/thunks";
+import Profile from "./Profile";
 import withLoginRedirect from "../../hoc/withLoginRedirect";
 
 class ProfileContainer extends React.Component {
@@ -18,17 +19,16 @@ class ProfileContainer extends React.Component {
   }
 }
 
-const withLoginRedirectProfileContainer = withLoginRedirect(ProfileContainer);
-const withRouterAndLoginRedirectProfileContainer = withRouter(
-  withLoginRedirectProfileContainer
-);
-
 const mapStateToProps = (state) => {
   return {
     profile: state.profile.profile,
   };
 };
 
-export default connect(mapStateToProps, {
-  processProfile,
-})(withRouterAndLoginRedirectProfileContainer);
+export default compose(
+  withLoginRedirect,
+  withRouter,
+  connect(mapStateToProps, {
+    processProfile,
+  })
+)(ProfileContainer);
