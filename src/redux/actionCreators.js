@@ -12,11 +12,17 @@ import {
   SET_PROFILE,
   AUTH_USER,
   LOGOUT_USER,
+  SET_STATUS,
 } from "./actionTypes";
 
 export const setProfile = (profile) => ({
   type: SET_PROFILE,
   profile,
+});
+
+export const setStatus = (status) => ({
+  type: SET_STATUS,
+  status,
 });
 
 export const addPost = () => ({

@@ -1,6 +1,7 @@
 export const ADD_POST = "ADD-POST";
 export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-export const SET_PROFILE = "SET_PROFILE";
+export const SET_PROFILE = "SET-PROFILE";
+export const SET_STATUS = "SET-STATUS";
 
 export const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 export const SEND_NEW_MESSAGE = "ADD-UPDATE-NEW-MESSAGE-TEXT";

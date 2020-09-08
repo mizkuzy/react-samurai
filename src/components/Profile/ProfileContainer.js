@@ -3,7 +3,7 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { get as _get } from "lodash";
-import { processProfile } from "../../redux/thunks";
+import { processProfile, updateStatus } from "../../redux/thunks";
 import Profile from "./Profile";
 import withLoginRedirect from "../../hoc/withLoginRedirect";
 
@@ -22,6 +22,7 @@ class ProfileContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     profile: state.profile.profile,
+    status: state.profile.status,
   };
 };
 
@@ -30,5 +31,6 @@ export default compose(
   withRouter,
   connect(mapStateToProps, {
     processProfile,
+    updateStatus,
   })
 )(ProfileContainer);

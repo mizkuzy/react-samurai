@@ -3,6 +3,7 @@ import {
   setFollowUser,
   setIsFetching,
   setProfile,
+  setStatus,
   setTotalUsersCount,
   setUnfollowUser,
   setUsers,
@@ -21,6 +22,18 @@ export const getAuthUserData = () => async (dispatch) => {
 export const processProfile = (uid) => async (dispatch) => {
   const profile = await profileApi.getProfile(uid);
   dispatch(setProfile(profile));
+
+  const status = await profileApi.getStatus(uid);
+  dispatch(setStatus(status));
+};
+
+export const updateStatus = (status) => async (dispatch) => {
+  const response = await profileApi.updateStatus(status);
+  if (response.resultCode === 0) {
+    dispatch(setStatus(status));
+  } else {
+    alert("Status is not updated. Please reload page and try again");
+  }
 };
 
 export const getUsers = (pageSize, pageNumber) => async (dispatch) => {

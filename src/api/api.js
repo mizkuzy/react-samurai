@@ -4,6 +4,7 @@ import {
   FOLLOW_PATH,
   IS_ME_AUTH_PATH,
   PROFILE_PATH,
+  STATUS_PATH,
   USERS_PATH,
 } from "./api-urls";
 
@@ -26,6 +27,21 @@ export const profileApi = {
   async getProfile(userId) {
     const url = `${PROFILE_PATH}/${userId}`;
     const response = await instance.get(url);
+
+    return response.data;
+  },
+  async getStatus(userId) {
+    const url = `${STATUS_PATH}/${userId}`;
+    const response = await instance.get(url);
+
+    return response.data;
+  },
+
+  async updateStatus(status) {
+    const url = `${STATUS_PATH}`;
+    const response = await instance.put(url, {
+      status,
+    });
 
     return response.data;
   },

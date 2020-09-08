@@ -6,7 +6,7 @@ import PostsContainer from "./Posts/PostsContainer";
 import LoadingSpinner from "../Common/LoadingSpinner";
 import { get as _get } from "lodash";
 
-const Profile = ({ profile }) => {
+const Profile = ({ profile, status, updateStatus }) => {
   return (
     <main className={s.profileContent}>
       {!profile && <LoadingSpinner />}
