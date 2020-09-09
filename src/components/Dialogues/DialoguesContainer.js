@@ -5,9 +5,9 @@ import { compose } from "redux";
 import withLoginRedirect from "../../hoc/withLoginRedirect";
 
 const mapsToProps = (state) => ({
-  dialogues: state.dialogues.dialogues,
-  messages: state.dialogues.messages,
-  newMessageText: state.dialogues.newMessageText,
+  dialogues: state.dialoguesPage.dialogues,
+  messages: state.dialoguesPage.messages,
+  newMessageText: state.dialoguesPage.newMessageText,
 });
 
 export default compose(

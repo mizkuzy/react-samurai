@@ -7,10 +7,10 @@ import authReducer from "./reducers/auth-reducer";
 import thunkMW from "redux-thunk";
 
 const reducers = combineReducers({
-  profile: profileReducer,
-  dialogues: dialoguesReducer,
+  profilePage: profileReducer,
+  dialoguesPage: dialoguesReducer,
   sidebar: sidebarReducer,
-  users: usersReducer,
+  usersPage: usersReducer,
   auth: authReducer,
 });
 
