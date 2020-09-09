@@ -13,8 +13,7 @@ const Profile = ({ profile, status, updateStatus }) => {
 
       {profile && (
         <>
-          <Header imageSrc={_get(profile, "photos.large")} />
-          <Info profile={profile} />
+          <Info profile={profile} status={status} updateStatus={updateStatus} />
           <PostsContainer />
         </>
       )}
