@@ -1,5 +1,6 @@
 import {
   ADD_POST,
+  DELETE_POST,
   SET_PROFILE,
   SET_STATUS,
   UPDATE_NEW_POST_TEXT,
@@ -21,6 +22,13 @@ const init = {
 
 const profileReducer = (state = init, action) => {
   switch (action.type) {
+    case DELETE_POST:
+      const idToDelete = action.pid;
+      const newPosts = [...state.posts].filter((p) => p.id !== idToDelete);
+      return {
+        ...state,
+        posts: newPosts,
+      };
     case ADD_POST:
       const id = state.nextPostId;
       const newPost = {

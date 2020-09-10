@@ -13,6 +13,7 @@ import {
   AUTH_USER,
   LOGOUT_USER,
   SET_STATUS,
+  DELETE_POST,
 } from "./actionTypes";
 
 export const setProfile = (profile) => ({
@@ -27,6 +28,11 @@ export const setStatus = (status) => ({
 
 export const addPost = () => ({
   type: ADD_POST,
+});
+
+export const deletePost = (pid) => ({
+  type: DELETE_POST,
+  pid,
 });
 
 export const updateNewPostText = (text) => ({

@@ -1,4 +1,5 @@
 export const ADD_POST = "ADD-POST";
+export const DELETE_POST = "DELETE-POST";
 export const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 export const SET_PROFILE = "SET-PROFILE";
 export const SET_STATUS = "SET-STATUS";
