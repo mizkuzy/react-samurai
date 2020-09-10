@@ -18,12 +18,17 @@ export const getAuthUserData = () => async (dispatch) => {
     dispatch(authenticateUser(id, email, login));
   }
 };
-
 export const processProfile = (uid) => async (dispatch) => {
-  const profile = await profileApi.getProfile(uid);
+  let profileUid = uid;
+
+  if (!profileUid) {
+    profileUid = uid; // TODO GET logged in user id. Will be implemented later
+  }
+
+  const profile = await profileApi.getProfile(profileUid);
   dispatch(setProfile(profile));
 
-  const status = await profileApi.getStatus(uid);
+  const status = await profileApi.getStatus(profileUid);
   dispatch(setStatus(status));
 };
 

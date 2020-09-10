@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -7,17 +7,17 @@ import { processProfile, updateStatus } from "../../redux/thunks";
 import Profile from "./Profile";
 import withLoginRedirect from "../../hoc/withLoginRedirect";
 
-class ProfileContainer extends React.Component {
-  componentDidMount() {
-    // TODO REMOVE DEFAULT PROFILE
-    const userId = _get(this.props, "match.params.userId", 2);
-    this.props.processProfile(userId);
-  }
+const ProfileContainer = (props) => {
+  const userId = _get(props, "match.params.userId");
 
-  render() {
-    return <Profile {...this.props} />;
-  }
-}
+  useEffect(() => {
+    if (userId) {
+      props.processProfile(userId);
+    }
+  }, [userId]);
+
+  return <Profile {...props} />;
+};
 
 const mapStateToProps = (state) => {
   return {
