@@ -1,19 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { compose } from "redux";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { Redirect, withRouter } from "react-router-dom";
+import { get as _get } from "lodash";
+import { processProfile, updateStatus } from "../../redux/thunks";
+import useLoginRedirect from "../../hooks/useLoginRedirect";
 import s from "./Profile.module.css";
-import Header from "./Header/Header";
+import LoadingSpinner from "../Common/LoadingSpinner";
 import Info from "./Info/Info";
 import PostsContainer from "./Posts/PostsContainer";
-import LoadingSpinner from "../Common/LoadingSpinner";
-import { get as _get } from "lodash";
+import { useParams } from "react-router-dom";
 
-const Profile = ({ profile, status, updateStatus }) => {
+const Profile = () => {
+  useLoginRedirect();
+
+  const userId = useParams(); //get from route
+  console.log(userId);
+  debugger;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (userId) {
+      dispatch(processProfile(userId));
+    }
+  }, [userId]);
+
+  const profile = useSelector((state) => state.profilePage.profile);
+  const status = useSelector((state) => state.profilePage.status);
+
+  console.log("profile", profile);
+  console.log("status", status);
   return (
     <main className={s.profileContent}>
       {!profile && <LoadingSpinner />}
 
       {profile && (
         <>
-          <Info profile={profile} status={status} updateStatus={updateStatus} />
+          {/*<Info profile={profile} status={status} updateStatus={updateStatus} />*/}
           <PostsContainer />
         </>
       )}
@@ -22,3 +45,10 @@ const Profile = ({ profile, status, updateStatus }) => {
 };
 
 export default Profile;
+// export default compose(
+//   withRouter,
+//   connect(, {
+//     processProfile,
+//     updateStatus,
+//   })
+// )(Profile);

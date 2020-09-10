@@ -19,6 +19,7 @@ export const getAuthUserData = () => async (dispatch) => {
   }
 };
 export const processProfile = (uid) => async (dispatch) => {
+  console.log('processProfile')
   let profileUid = uid;
 
   if (!profileUid) {
