@@ -1,65 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-class Status extends React.Component {
-  state = {
-    editMode: false,
-    text: this.props.text,
+const Status = ({ text, updateStatus }) => {
+  const [editMode, setEditMode] = useState(false);
+  const [status, setStatus] = useState("");
+
+  useEffect(() => {
+    setStatus(text);
+  }, [text]);
+
+  const onStatusChange = (e) => {
+    setStatus(e.currentTarget.value);
   };
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.text !== this.props.text) {
-      this.setState({
-        text: this.props.text,
-      });
-    }
-  }
-
-  activateEditMode = () => {
-    this.setState({
-      editMode: true,
-    });
+  const activateEditMode = () => {
+    setEditMode(true);
   };
 
-  onBlurClick = (e) => {
-    this.deactivateEditMode();
-    this.props.updateStatus(e.currentTarget.value);
+  const deactivateEditMode = () => {
+    setEditMode(false);
   };
 
-  deactivateEditMode = () => {
-    this.setState({
-      editMode: false,
-    });
+  const onBlurClick = (e) => {
+    deactivateEditMode();
+    updateStatus(e.currentTarget.value);
   };
 
-  onStatusChange = (e) => {
-    this.setState({
-      text: e.currentTarget.value,
-    });
-  };
-
-  render() {
-    return (
+  return (
       <>
-        {!this.state.editMode && (
-          <div>
-            <span onDoubleClick={this.activateEditMode}>
-              {this.props.text || "DOUBLE CLICK TO UPDATE A STATUS"}
-            </span>
-          </div>
+        {!editMode && (
+            <div>
+          <span onDoubleClick={activateEditMode}>
+            {text || "DOUBLE CLICK TO UPDATE A STATUS"}
+          </span>
+            </div>
         )}
-        {this.state.editMode && (
-          <div>
-            <input
-              autoFocus={true}
-              onChange={this.onStatusChange}
-              onBlur={this.onBlurClick}
-              value={this.state.text}
-            />
-          </div>
+        {editMode && (
+            <div>
+              <input
+                  autoFocus={true}
+                  onChange={onStatusChange}
+                  onBlur={onBlurClick}
+                  value={status}
+              />
+            </div>
         )}
       </>
-    );
-  }
-}
+  );
+};
 
 export default Status;
