@@ -1,8 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import s from "./Posts.module.css";
 import Post from "./Post/Post";
+import { addPost, updateNewPostText } from "../../../redux/actionCreators";
 
-const Posts = ({ posts, newPostText, addPost, updateNewPostText }) => {
+const Posts = () => {
+  const posts = useSelector((state) => state.profilePage.posts);
+  const newPostText = useSelector((state) => state.profilePage.newPostText);
+
   const onAddPost = () => {
     addPost();
   };
