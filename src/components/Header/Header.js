@@ -1,17 +1,28 @@
 import React from "react";
 import s from "./Header.module.css";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthUserData } from "../../redux/thunks";
 
-const Header = ({ login, isAuth }) => (
-  <header className={s.header}>
-    <img
-      alt={"Header image"}
-      src="https://images.pexels.com/photos/3193889/pexels-photo-3193889.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-    />
+const Header = () => {
+  const dispatch = useDispatch();
+  dispatch(getAuthUserData());
 
-    <div className={s.loginBlock}>
-      {isAuth ? <span>{login}</span> : <NavLink to={"/login"}>Login</NavLink>}
-    </div>
-  </header>
-);
+  const isAuth = useSelector((state) => state.auth.isAuth);
+  const login = useSelector((state) => state.auth.login);
+
+  return (
+    <header className={s.header}>
+      <img
+        alt={"Header"}
+        src="https://images.pexels.com/photos/3193889/pexels-photo-3193889.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+      />
+
+      <div className={s.loginBlock}>
+        {isAuth ? <span>{login}</span> : <NavLink to={"/login"}>Login</NavLink>}
+      </div>
+    </header>
+  );
+};
+
 export default Header;
