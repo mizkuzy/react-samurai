@@ -9,6 +9,7 @@ const useLoginRedirect = () => {
   const location = {
     pathname: "/login",
   };
+  debugger
   if (!isAuth) {
     history.push(location);
   }

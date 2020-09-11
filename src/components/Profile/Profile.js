@@ -14,7 +14,8 @@ import { useParams } from "react-router-dom";
 const Profile = () => {
   useLoginRedirect();
 
-  const userId = useParams(); //get from route
+  const params = useParams(); //get from route
+  const userId = params.userId //get from route
   console.log(userId);
   debugger;
 
