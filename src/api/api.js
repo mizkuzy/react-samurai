@@ -3,6 +3,7 @@ import {
   BASE_API_URL,
   FOLLOW_PATH,
   IS_ME_AUTH_PATH,
+  LOGIN_PATH,
   PROFILE_PATH,
   STATUS_PATH,
   USERS_PATH,
@@ -22,6 +23,19 @@ export const authApi = {
 
     return response.data;
   },
+  async login(email, password) {
+    const response = await instance.post(LOGIN_PATH, {
+      email,
+      password,
+    });
+
+    return response.data;
+  },
+  async logout(){
+    const response = await instance.delete(LOGIN_PATH);
+
+    return response.data;
+  }
 };
 export const profileApi = {
   async getProfile(userId) {

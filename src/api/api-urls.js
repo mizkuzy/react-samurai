@@ -5,3 +5,4 @@ export const FOLLOW_PATH = `follow`;
 export const PROFILE_PATH = `profile`;
 export const STATUS_PATH = `profile/status`;
 export const IS_ME_AUTH_PATH = `auth/me`;
+export const LOGIN_PATH = `auth/login`;
