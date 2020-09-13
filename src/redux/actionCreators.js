@@ -1,7 +1,6 @@
 import {
   SEND_NEW_MESSAGE,
   ADD_POST,
-  UPDATE_NEW_MESSAGE_TEXT,
   UPDATE_NEW_POST_TEXT,
   FOLLOW_USER,
   UNFOLLOW_USER,
@@ -40,13 +39,9 @@ export const updateNewPostText = (text) => ({
   text,
 });
 
-export const sendMessage = () => ({
+export const sendMessage = (message) => ({
   type: SEND_NEW_MESSAGE,
-});
-
-export const updateNewMessageText = (text) => ({
-  type: UPDATE_NEW_MESSAGE_TEXT,
-  text,
+  message
 });
 
 export const setUsers = (users) => ({

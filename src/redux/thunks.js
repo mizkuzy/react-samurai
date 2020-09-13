@@ -8,6 +8,7 @@ import {
   setUnfollowUser,
   setUsers,
   updatePageNumber,
+  sendMessage as sendMessageAction,
 } from "./actionCreators";
 import { authApi, profileApi, usersApi } from "../api/api";
 
@@ -19,7 +20,6 @@ export const getAuthUserData = () => async (dispatch) => {
   }
 };
 export const processProfile = (uid) => async (dispatch) => {
-  console.log('processProfile')
   let profileUid = uid;
 
   if (!profileUid) {
@@ -75,4 +75,8 @@ export const unfollowUser = (uid) => async (dispatch) => {
   } else {
     throw new Error(`Server Error. User ${uid} was not unfollowed.`);
   }
+};
+
+export const sendMessage = (message) => async (dispatch) => {
+  dispatch(sendMessageAction(message));
 };

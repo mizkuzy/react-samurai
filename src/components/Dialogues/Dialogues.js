@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import DialogueItem from "./DialogueItem/DialogueItem";
 import Message from "./Message/Message";
 import s from "./Dialogues.module.css";
+import NewMessageForm from "./NewMessageForm/NewMessageForm";
 
 const Dialogues = () => {
   const dialogues = useSelector((state) => state.dialoguesPage.dialogues);
@@ -19,18 +20,7 @@ const Dialogues = () => {
         {messages.map((md) => (
           <Message key={md.id} text={md.text} />
         ))}
-        <div>
-          <div>
-            <textarea
-              onChange={onUpdateNewMessageText}
-              value={newMessageText}
-              placeholder={"Enter a new message"}
-            />
-          </div>
-          <div>
-            <button onClick={onSendMessage}>Add Message</button>
-          </div>
-        </div>
+        <NewMessageForm/>
       </div>
     </div>
   );

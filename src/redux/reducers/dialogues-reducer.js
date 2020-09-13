@@ -1,4 +1,4 @@
-import { SEND_NEW_MESSAGE, UPDATE_NEW_MESSAGE_TEXT } from "../actionTypes";
+import { SEND_NEW_MESSAGE } from "../actionTypes";
 
 const dialogues = [
   { id: 1, name: "Lucy" },
@@ -15,28 +15,22 @@ const messages = [
 const init = {
   dialogues,
   messages,
-  newMessageText: "",
+  nextMessageId: messages.length + 1,
 };
 
 const dialoguesReducer = (state = init, action) => {
   switch (action.type) {
-    case UPDATE_NEW_MESSAGE_TEXT:
-      return {
-        ...state,
-        newMessageText: action.text,
-      };
     case SEND_NEW_MESSAGE:
-      const text = state.newMessageText;
+      const text = action.message;
       const newMessage = {
-        id: 1,
+        id: state.nextMessageId,
         text,
       };
-      state.newMessageText = "";
 
       return {
         ...state,
+        nextMessageId: state.nextMessageId + 1,
         messages: [...state.messages, newMessage],
-        newMessageText: "",
       };
     default:
       return state;
