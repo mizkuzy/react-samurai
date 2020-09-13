@@ -5,13 +5,13 @@ import { BrowserRouter, Route } from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import DialoguesContainer from "./components/Dialogues/DialoguesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import Login from "./components/Login/Login";
 import { Provider } from "react-redux";
 import store from "./redux/redux-store";
 import Header from "./components/Header/Header";
 import ProfileHook from "./components/Profile/ProfileHook";
+import Dialogues from "./components/Dialogues/Dialogues";
 
 const App = () => (
   <BrowserRouter>
@@ -30,7 +30,7 @@ const App = () => (
           <Route
             exact
             path="/dialogues"
-            render={() => <DialoguesContainer />}
+            render={() => <Dialogues/>}
           />
           <Route path="/users" render={() => <UsersContainer />} />
 

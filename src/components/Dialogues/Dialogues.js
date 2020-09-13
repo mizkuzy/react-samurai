@@ -1,33 +1,23 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import DialogueItem from "./DialogueItem/DialogueItem";
 import Message from "./Message/Message";
 import s from "./Dialogues.module.css";
 
-const Dialogues = ({
-  dialogues,
-  messages,
-  newMessageText,
-  sendMessage,
-  updateNewMessageText,
-}) => {
-  const onSendMessage = () => {
-    sendMessage();
-  };
-
-  const onUpdateNewMessageText = (e) => {
-    updateNewMessageText(e.target.value);
-  };
+const Dialogues = () => {
+  const dialogues = useSelector((state) => state.dialoguesPage.dialogues);
+  const messages = useSelector((state) => state.dialoguesPage.messages);
 
   return (
     <div className={s.dialoguesContent}>
       <div className={s.dialogues}>
         {dialogues.map((dd) => (
-          <DialogueItem name={dd.name} urlId={dd.id} />
+          <DialogueItem key={dd.id} name={dd.name} urlId={dd.id} />
         ))}
       </div>
       <div className={s.messages}>
         {messages.map((md) => (
-          <Message text={md.text} />
+          <Message key={md.id} text={md.text} />
         ))}
         <div>
           <div>
