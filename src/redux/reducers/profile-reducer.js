@@ -14,7 +14,6 @@ const posts = [
 
 const init = {
   posts,
-  newPostText: "",
   nextPostId: 4,
   profile: null,
   status: "",
@@ -33,14 +32,13 @@ const profileReducer = (state = init, action) => {
       const id = state.nextPostId;
       const newPost = {
         id: id,
-        text: state.newPostText,
+        text: action.postText,
       };
 
       return {
         ...state,
         posts: [...state.posts, newPost],
         nextPostId: state.nextPostId + 1,
-        newPostText: "",
       };
     case UPDATE_NEW_POST_TEXT:
       return {

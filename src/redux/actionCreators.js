@@ -25,8 +25,9 @@ export const setStatus = (status) => ({
   status,
 });
 
-export const addPost = () => ({
+export const addPost = (postText) => ({
   type: ADD_POST,
+  postText,
 });
 
 export const deletePost = (pid) => ({
@@ -41,7 +42,7 @@ export const updateNewPostText = (text) => ({
 
 export const sendMessage = (message) => ({
   type: SEND_NEW_MESSAGE,
-  message
+  message,
 });
 
 export const setUsers = (users) => ({

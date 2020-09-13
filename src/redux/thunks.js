@@ -8,6 +8,7 @@ import {
   setUnfollowUser,
   setUsers,
   updatePageNumber,
+  addPost as addPostAction,
   sendMessage as sendMessageAction,
 } from "./actionCreators";
 import { authApi, profileApi, usersApi } from "../api/api";
@@ -77,6 +78,10 @@ export const unfollowUser = (uid) => async (dispatch) => {
   }
 };
 
-export const sendMessage = (message) => async (dispatch) => {
+export const sendMessage = (message) => (dispatch) => {
   dispatch(sendMessageAction(message));
+};
+
+export const addPost = (postText) => (dispatch) => {
+  dispatch(addPostAction(postText));
 };
