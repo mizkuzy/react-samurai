@@ -14,7 +14,7 @@ const Form = (props) => {
         name="postText"
       />
       <div>
-        <button type="submit" disabled={isSubmitting}>
+        <button type="submit" disabled={!values.postText || isSubmitting}>
           Add Post
         </button>
       </div>
@@ -28,7 +28,6 @@ const FormContainer = withFormik({
   handleSubmit: async (values, { props, setSubmitting, resetForm }) => {
     // TODO why with setTimeout()
     setTimeout(() => {
-      debugger;
       props.dispatch(addPost(values.postText));
       resetForm({});
       setSubmitting(false);
