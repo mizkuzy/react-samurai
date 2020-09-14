@@ -2,6 +2,7 @@ import React from "react";
 import { withFormik } from "formik";
 import { connect } from "react-redux";
 import s from "./Login.module.css";
+import { login } from "../../redux/thunks";
 
 const Form = ({
   values,
@@ -17,21 +18,21 @@ const Form = ({
       <div>
         <input
           type="text"
-          name="login"
-          value={values.login}
-          placeholder="Login"
+          name="email"
+          value={values.email}
+          placeholder="Email"
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        {errors.login && touched.login && (
+        {errors.email && touched.email && (
           <div className={s.error} id="feedback">
-            {errors.login}
+            {errors.email}
           </div>
         )}
       </div>
       <div>
         <input
-          type="text"
+          type="password"
           name="password"
           placeholder="Password"
           value={values.password}
@@ -46,7 +47,12 @@ const Form = ({
       </div>
       <div>
         <label>
-          <input id="rememberMe" type="checkbox" name="rememberMe" />
+          <input
+            type="checkbox"
+            name="rememberMe"
+            value={values.password}
+            onChange={handleChange}
+          />
           Remember me
         </label>
       </div>
@@ -60,12 +66,12 @@ const Form = ({
 };
 
 const FormContainer = withFormik({
-  mapPropsToValues: () => ({ login: "", password: "", rememberMe: "" }),
+  mapPropsToValues: () => ({ email: "", password: "", rememberMe: false }),
   validate: (values) => {
     const errors = {};
 
-    if (!values.login) {
-      errors.login = "Required";
+    if (!values.email) {
+      errors.email = "Required";
     }
 
     if (!values.password) {
@@ -75,9 +81,11 @@ const FormContainer = withFormik({
     return errors;
   },
   handleSubmit: async (values, { props, setSubmitting, resetForm }) => {
+    const { email, password, rememberMe } = values;
+    debugger;
     // TODO why with setTimeout()
     setTimeout(() => {
-      // props.dispatch(sendMessage(values.newMessage)); // TODO send login
+      props.dispatch(login(email, password, rememberMe));
       resetForm({});
       // if your onSubmit function is synchronous,
       // then you need to call setSubmitting(false) on your own.

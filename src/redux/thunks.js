@@ -10,6 +10,7 @@ import {
   updatePageNumber,
   addPost as addPostAction,
   sendMessage as sendMessageAction,
+  logoutUser,
 } from "./actionCreators";
 import { authApi, profileApi, usersApi } from "../api/api";
 
@@ -20,6 +21,24 @@ export const getAuthUserData = () => async (dispatch) => {
     dispatch(authenticateUser(id, email, login));
   }
 };
+
+export const login = (email, password, rememberMe) => async (dispatch) => {
+  debugger;
+  const response = await authApi.login(email, password, rememberMe);
+
+  if (response.resultCode === 0) {
+    dispatch(getAuthUserData());
+  }
+};
+
+export const logout = () => async (dispatch) => {
+  const response = await authApi.logout();
+
+  if (response.resultCode === 0) {
+    dispatch(logoutUser());
+  }
+};
+
 export const processProfile = (uid) => async (dispatch) => {
   let profileUid = uid;
 

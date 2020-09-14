@@ -23,19 +23,20 @@ export const authApi = {
 
     return response.data;
   },
-  async login(email, password) {
+  async login(email, password, rememberMe = false) {
     const response = await instance.post(LOGIN_PATH, {
       email,
       password,
+      rememberMe,
     });
 
     return response.data;
   },
-  async logout(){
+  async logout() {
     const response = await instance.delete(LOGIN_PATH);
 
     return response.data;
-  }
+  },
 };
 export const profileApi = {
   async getProfile(userId) {
