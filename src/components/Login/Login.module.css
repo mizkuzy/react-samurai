@@ -1,3 +1,7 @@
 .error {
   color: #ff526f;
 }
+
+button {
+  margin: 10px;
+}

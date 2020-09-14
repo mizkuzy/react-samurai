@@ -1,6 +1,6 @@
 import React from "react";
 import { withFormik } from "formik";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import s from "./Login.module.css";
 import { login } from "../../redux/thunks";
 
@@ -82,7 +82,7 @@ const FormContainer = withFormik({
   },
   handleSubmit: async (values, { props, setSubmitting, resetForm }) => {
     const { email, password, rememberMe } = values;
-    debugger;
+
     // TODO why with setTimeout()
     setTimeout(() => {
       props.dispatch(login(email, password, rememberMe));
@@ -99,11 +99,16 @@ const FormContainer = withFormik({
 const LoginForm = connect()(FormContainer);
 
 const Login = () => {
+  const isAuth = useSelector((state) => state.auth.isAuth);
   return (
-    <div>
-      <h2>Login form</h2>
-      <LoginForm />
-    </div>
+    <>
+      {!isAuth && (
+        <div>
+          <h2>Login form</h2>
+          <LoginForm />
+        </div>
+      )}
+    </>
   );
 };
 

@@ -23,7 +23,6 @@ export const getAuthUserData = () => async (dispatch) => {
 };
 
 export const login = (email, password, rememberMe) => async (dispatch) => {
-  debugger;
   const response = await authApi.login(email, password, rememberMe);
 
   if (response.resultCode === 0) {
