@@ -6,15 +6,13 @@ import useLoginRedirect from "../../hooks/useLoginRedirect";
 import s from "./Profile.module.css";
 import LoadingSpinner from "../Common/LoadingSpinner";
 import Info from "./Info/Info";
-import { useParams } from "react-router-dom";
 import Posts from "./Posts/Posts";
+import { useRedirect } from "hookrouter";
 
-const ProfileHook = () => {
+const ProfileHook = ({ userId }) => {
   console.log("profile");
   // useLoginRedirect();
-
-  const params = useParams();
-  const userId = params.userId;
+  useRedirect("/profile", "/users"); // TODO wrap in custom hook to fetch uid AND change to redirect profile with id
 
   const dispatch = useDispatch();
   useEffect(() => {

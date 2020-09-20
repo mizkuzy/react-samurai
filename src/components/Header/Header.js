@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Header.module.css";
-import { NavLink } from "react-router-dom";
+import { A } from "hookrouter";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthUserData, logout } from "../../redux/thunks";
 
@@ -27,7 +27,7 @@ const Header = () => {
             <span>{login}</span> <button onClick={onLogout}>Log out</button>
           </>
         ) : (
-          <NavLink to={"/login"}>Login</NavLink>
+          <A href={"/login"}>Login</A>
         )}
       </div>
     </header>
