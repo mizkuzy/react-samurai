@@ -12,6 +12,7 @@ import { useRedirect, useRoutes } from "hookrouter";
 import Header from "./components/Header/Header";
 import ProfileHook from "./components/Profile/ProfileHook";
 import Dialogues from "./components/Dialogues/Dialogues";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const routes = {
   "/profile/:userId": ({ userId }) => <ProfileHook userId={userId} />,
@@ -26,6 +27,7 @@ const routes = {
 const App = () => {
   // TODO init
   useRedirect("/", "/users"); // TODO change to redirect profile with id
+  useRedirect("/profile", "/users"); // TODO change to redirect profile with id
 
   const match = useRoutes(routes);
   return (
@@ -33,7 +35,7 @@ const App = () => {
       <div className="app-wrapper">
         <Header />
         <Navbar />
-        <main className="app-wrapper-content">{match}</main>
+        <main className="app-wrapper-content">{match || <NotFoundPage />}</main>
       </div>
     </Provider>
   );

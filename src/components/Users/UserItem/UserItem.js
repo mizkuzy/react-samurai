@@ -9,6 +9,7 @@ const FollowToggleButton = ({ name, action }) => {
 };
 
 const UserItem = ({ user, followUser, unfollowUser }) => {
+  // TODO FIX
   const onFollowUser = () => {
     followUser(user.id);
   };

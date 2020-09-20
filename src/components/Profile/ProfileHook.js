@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { get as _get } from "lodash";
 import { processProfile } from "../../redux/thunks";
 import useLoginRedirect from "../../hooks/useLoginRedirect";
 import s from "./Profile.module.css";
 import LoadingSpinner from "../Common/LoadingSpinner";
 import Info from "./Info/Info";
 import Posts from "./Posts/Posts";
-import { useRedirect } from "hookrouter";
 
 const ProfileHook = ({ userId }) => {
   console.log("profile");
-  // useLoginRedirect();
-  useRedirect("/profile", "/users"); // TODO wrap in custom hook to fetch uid AND change to redirect profile with id
+  useLoginRedirect();
+  // useRedirect("/profile", "/users"); // TODO wrap in custom hook to fetch uid AND change to redirect profile with id
 
   const dispatch = useDispatch();
   useEffect(() => {

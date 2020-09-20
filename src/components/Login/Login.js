@@ -3,6 +3,7 @@ import { withFormik } from "formik";
 import { connect, useSelector } from "react-redux";
 import s from "./Login.module.css";
 import { login } from "../../redux/thunks";
+import { navigate } from "hookrouter";
 
 const Form = ({
   values,
@@ -100,6 +101,11 @@ const LoginForm = connect()(FormContainer);
 
 const Login = () => {
   const isAuth = useSelector((state) => state.auth.isAuth);
+
+  if (isAuth) {
+    navigate("/users");
+  }
+
   return (
     <>
       {!isAuth && (

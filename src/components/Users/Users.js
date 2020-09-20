@@ -3,6 +3,7 @@ import s from "./Users.module.css";
 import UserItem from "./UserItem/UserItem";
 import LoadingSpinner from "../Common/LoadingSpinner";
 
+// TODO FIX. In the first page only one user is shown
 const Paging = ({
   totalElementsNumber,
   pageSize,
