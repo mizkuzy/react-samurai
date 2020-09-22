@@ -29,7 +29,7 @@ const App = () => {
         <Navbar />
         <main className="app-wrapper-content">
           <Switch>
-            <Route exact path={["/", "/profile/:userId"]}>
+            <Route exact path={["/", "/profile", "/profile/:userId"]}>
               <ProfileHook />
             </Route>
             <Route exact path="/dialogues">
