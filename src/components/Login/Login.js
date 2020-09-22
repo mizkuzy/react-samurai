@@ -3,7 +3,7 @@ import { withFormik } from "formik";
 import { connect, useSelector } from "react-redux";
 import s from "./Login.module.css";
 import { login } from "../../redux/thunks";
-import { navigate } from "hookrouter";
+import { history } from "../../helpers/history";
 
 const Form = ({
   values,
@@ -100,10 +100,11 @@ const FormContainer = withFormik({
 const LoginForm = connect()(FormContainer);
 
 const Login = () => {
+  console.log("Login");
   const isAuth = useSelector((state) => state.auth.isAuth);
 
   if (isAuth) {
-    navigate("/users");
+    history.push("/users");
   }
 
   return (

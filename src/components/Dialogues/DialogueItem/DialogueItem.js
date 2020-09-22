@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./DialogueItem.module.css";
-import { A } from "hookrouter";
+import { NavLink } from "react-router-dom";
 
 const DialogueItem = ({ name, urlId }) => {
   const path = `/dialogues/${urlId}`;
@@ -8,7 +8,7 @@ const DialogueItem = ({ name, urlId }) => {
   return (
     <div className={s.item + " " + s.active}>
       {/* TODO link doesn't implemented */}
-      <A href={path}>{name}</A>;
+      <NavLink to={path}>{name}</NavLink>;
     </div>
   );
 };

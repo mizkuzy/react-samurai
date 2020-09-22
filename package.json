@@ -8,7 +8,6 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
     "formik": "^2.1.5",
-    "hookrouter": "^1.2.3",
     "lodash": "^4.17.20",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

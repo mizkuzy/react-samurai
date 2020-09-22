@@ -1,12 +1,11 @@
-import React from "react";
 import { useSelector } from "react-redux";
-import { navigate } from "hookrouter";
+import { history } from "../helpers/history";
 
 const useLoginRedirect = () => {
   const isAuth = useSelector((state) => state.auth.isAuth);
 
   if (!isAuth) {
-    navigate("/login");
+    history.push("/login");
   }
 };
 

@@ -6,38 +6,60 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import UsersContainer from "./components/Users/UsersContainer";
 import Login from "./components/Login/Login";
-import { Provider } from "react-redux";
-import store from "./redux/redux-store";
-import { useRedirect, useRoutes } from "hookrouter";
 import Header from "./components/Header/Header";
 import ProfileHook from "./components/Profile/ProfileHook";
 import Dialogues from "./components/Dialogues/Dialogues";
 import NotFoundPage from "./pages/NotFoundPage";
-
-const routes = {
-  "/profile/:userId": ({ userId }) => <ProfileHook userId={userId} />,
-  "/dialogues": () => <Dialogues />,
-  "/users": () => <UsersContainer />,
-  "/login": () => <Login />,
-  "/news": () => <News />,
-  "/music": () => <Music />,
-  "/settings": () => <Settings />,
-};
+import {
+  Redirect,
+  Route,
+  Switch,
+  BrowserRouter as Router,
+} from "react-router-dom";
 
 const App = () => {
   // TODO init
-  useRedirect("/", "/users"); // TODO change to redirect profile with id
-  useRedirect("/profile", "/users"); // TODO change to redirect profile with id
+  // useRedirect("/", "/users"); // TODO change to redirect profile with id
+  // useRedirect("/profile", "/users"); // TODO change to redirect profile with id
 
-  const match = useRoutes(routes);
   return (
-    <Provider store={store}>
+    <Router>
       <div className="app-wrapper">
         <Header />
         <Navbar />
-        <main className="app-wrapper-content">{match || <NotFoundPage />}</main>
+        <main className="app-wrapper-content">
+          <Switch>
+            <Route exact path={["/", "/profile/:userId"]}>
+              <ProfileHook />
+            </Route>
+            <Route exact path="/dialogues">
+              <Dialogues />
+            </Route>
+            <Route path="/users">
+              <UsersContainer />
+            </Route>
+
+            <Route path="/login">
+              <Login />
+            </Route>
+
+            <Route path="/news">
+              <News />
+            </Route>
+            <Route path="/music">
+              <Music />
+            </Route>
+            <Route path="/settings">
+              <Settings />
+            </Route>
+            {/*<Redirect from="*" to="/" />*/}
+            <Route>
+              <NotFoundPage />
+            </Route>
+          </Switch>
+        </main>
       </div>
-    </Provider>
+    </Router>
   );
 };
 

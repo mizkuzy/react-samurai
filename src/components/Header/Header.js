@@ -1,8 +1,8 @@
 import React from "react";
 import s from "./Header.module.css";
-import { A } from "hookrouter";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthUserData, logout } from "../../redux/thunks";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const Header = () => {
             <span>{login}</span> <button onClick={onLogout}>Log out</button>
           </>
         ) : (
-          <A href={"/login"}>Login</A>
+          <NavLink to={"/login"}>Login</NavLink>
         )}
       </div>
     </header>

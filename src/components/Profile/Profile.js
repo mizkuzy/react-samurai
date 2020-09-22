@@ -3,7 +3,6 @@ import { compose } from "redux";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { get as _get } from "lodash";
 import { processProfile, updateStatus } from "../../redux/thunks";
-import useLoginRedirect from "../../hooks/useLoginRedirect";
 import s from "./Profile.module.css";
 import LoadingSpinner from "../Common/LoadingSpinner";
 import Info from "./Info/Info";
@@ -11,7 +10,7 @@ import PostsContainer from "./Posts/PostsContainer";
 
 // todo REMOVE when profile hook will be refactored fully
 const Profile = () => {
-  useLoginRedirect();
+  // useLoginRedirect();
 
   // const params = useParams(); //get from route
   // const userId = params.userId //get from route
