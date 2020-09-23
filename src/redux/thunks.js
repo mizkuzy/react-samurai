@@ -1,5 +1,5 @@
 import {
-  authenticateUser,
+  setUserAuthentication,
   setFollowUser,
   setIsFetching,
   setProfile,
@@ -11,22 +11,32 @@ import {
   addPost as addPostAction,
   sendMessage as sendMessageAction,
   logoutUser,
+  initializeApp as initApp,
+  destroyApp,
 } from "./actionCreators";
 import { authApi, profileApi, usersApi } from "../api/api";
 
-export const getAuthUserData = () => async (dispatch) => {
+export const initializeApp = () => async (dispatch) => {
+  await dispatch(authenticateUser());
+  dispatch(initApp());
+};
+
+export const authenticateUser = () => async (dispatch) => {
   const response = await authApi.me();
+
   if (response.resultCode === 0) {
     const { id, email, login } = response.data;
-    dispatch(authenticateUser(id, email, login));
+    dispatch(setUserAuthentication(id, email, login));
+    dispatch(initApp());
   }
+  // todo fail
 };
 
 export const login = (email, password, rememberMe) => async (dispatch) => {
   const response = await authApi.login(email, password, rememberMe);
 
   if (response.resultCode === 0) {
-    dispatch(getAuthUserData());
+    dispatch(authenticateUser());
   }
 };
 

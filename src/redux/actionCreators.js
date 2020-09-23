@@ -9,10 +9,11 @@ import {
   UPDATE_PAGE_NUMBER,
   SET_IS_FETCHING,
   SET_PROFILE,
-  AUTH_USER,
+  SET_USER_AUTHENTICATION,
   LOGOUT_USER,
   SET_STATUS,
   DELETE_POST,
+  INITIALIZE, DESTROY,
 } from "./actionTypes";
 
 export const setProfile = (profile) => ({
@@ -72,8 +73,8 @@ export const setIsFetching = (isFetching) => ({
   isFetching,
 });
 
-export const authenticateUser = (userId, email, login) => ({
-  type: AUTH_USER,
+export const setUserAuthentication = (userId, email, login) => ({
+  type: SET_USER_AUTHENTICATION,
   payload: {
     userId,
     email,
@@ -83,4 +84,12 @@ export const authenticateUser = (userId, email, login) => ({
 
 export const logoutUser = () => ({
   type: LOGOUT_USER,
+});
+
+export const initializeApp = () => ({
+  type: INITIALIZE,
+});
+
+export const destroyApp = () => ({
+  type: DESTROY,
 });

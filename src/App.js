@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import News from "./components/News/News";
@@ -10,20 +10,30 @@ import Header from "./components/Header/Header";
 import ProfileHook from "./components/Profile/ProfileHook";
 import Dialogues from "./components/Dialogues/Dialogues";
 import NotFoundPage from "./pages/NotFoundPage";
-import {
-  Redirect,
-  Route,
-  Switch,
-  BrowserRouter as Router,
-} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { initializeApp } from "./redux/thunks";
+import LoadingSpinner from "./components/Common/LoadingSpinner";
 
 const App = () => {
-  // TODO init
+  const dispatch = useDispatch();
+
+  const isInitialized = useSelector((state) => state.app.isInitialized);
+  useEffect(() => {
+    dispatch(initializeApp());
+  }, [dispatch]);
+
   // useRedirect("/", "/users"); // TODO change to redirect profile with id
   // useRedirect("/profile", "/users"); // TODO change to redirect profile with id
+  console.log("App isInitialized ", isInitialized);
 
+  if (!isInitialized) {
+    return <LoadingSpinner />;
+  }
+
+  console.log("App render");
   return (
-    <Router>
+    <>
       <div className="app-wrapper">
         <Header />
         <Navbar />
@@ -43,15 +53,15 @@ const App = () => {
               <Login />
             </Route>
 
-            <Route path="/news">
-              <News />
-            </Route>
-            <Route path="/music">
-              <Music />
-            </Route>
-            <Route path="/settings">
-              <Settings />
-            </Route>
+            {/*<Route path="/news">*/}
+            {/*  <News />*/}
+            {/*</Route>*/}
+            {/*<Route path="/music">*/}
+            {/*  <Music />*/}
+            {/*</Route>*/}
+            {/*<Route path="/settings">*/}
+            {/*  <Settings />*/}
+            {/*</Route>*/}
             {/*<Redirect from="*" to="/" />*/}
             <Route>
               <NotFoundPage />
@@ -59,7 +69,7 @@ const App = () => {
           </Switch>
         </main>
       </div>
-    </Router>
+    </>
   );
 };
 

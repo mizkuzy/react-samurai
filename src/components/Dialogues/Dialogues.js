@@ -9,7 +9,9 @@ const Dialogues = () => {
   const dialogues = useSelector((state) => state.dialoguesPage.dialogues);
   const messages = useSelector((state) => state.dialoguesPage.messages);
 
-  return (
+    console.log("Dialogues Navbar")
+
+    return (
     <div className={s.dialoguesContent}>
       <div className={s.dialogues}>
         {dialogues.map((dd) => (

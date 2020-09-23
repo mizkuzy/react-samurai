@@ -1,12 +1,11 @@
 import React from "react";
 import s from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getAuthUserData, logout } from "../../redux/thunks";
 import { NavLink } from "react-router-dom";
+import {logout} from "../../redux/thunks";
 
 const Header = () => {
   const dispatch = useDispatch();
-  dispatch(getAuthUserData());
 
   const isAuth = useSelector((state) => state.auth.isAuth);
   const login = useSelector((state) => state.auth.login);
@@ -15,6 +14,7 @@ const Header = () => {
     dispatch(logout());
   };
 
+  console.log("header render")
   return (
     <header className={s.header}>
       <img

@@ -7,11 +7,12 @@ import s from "./Profile.module.css";
 import LoadingSpinner from "../Common/LoadingSpinner";
 import Info from "./Info/Info";
 import Posts from "./Posts/Posts";
+import useCurrentProfileRedirect from "../../hooks/useCurrentProfileRedirect";
 
 const ProfileHook = () => {
-  console.log("profile");
+  console.log("profile render");
   useLoginRedirect();
-  // useRedirect("/profile", "/users"); // TODO wrap in custom hook to fetch uid AND change to redirect profile with id
+  useCurrentProfileRedirect();
 
   const dispatch = useDispatch();
 
@@ -20,6 +21,7 @@ const ProfileHook = () => {
 
   useEffect(() => {
     if (userId) {
+      console.log("useEffect uid");
       dispatch(processProfile(userId));
     }
   }, [userId]);

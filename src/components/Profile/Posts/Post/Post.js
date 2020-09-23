@@ -4,7 +4,7 @@ import s from "./Post.module.css";
 // TODO DO WE NEED TO GET RID OF props here??
 const Post = ({ text, likesNumber, postNumber }) => (
   <div className={s.item}>
-    <img src="https://i.gifer.com/OZqj.gif" />
+    <img alt="post" src="https://i.gifer.com/OZqj.gif" />
     <span>
       {" "}
       №{postNumber}: {text}

@@ -1,9 +1,10 @@
 import React from "react";
 import { withFormik } from "formik";
 import { connect, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import s from "./Login.module.css";
 import { login } from "../../redux/thunks";
-import { history } from "../../helpers/history";
+import useQuery from "../../hooks/useQuery";
 
 const Form = ({
   values,
@@ -100,17 +101,24 @@ const FormContainer = withFormik({
 const LoginForm = connect()(FormContainer);
 
 const Login = () => {
-  console.log("Login");
   const isAuth = useSelector((state) => state.auth.isAuth);
+  const userId = useSelector((state) => state.auth.userId);
+
+  let query = useQuery();
+  const history = useHistory();
 
   if (isAuth) {
-    history.push("/users");
+    const prevPath = query.get("prev_path");
+    // redirect to user profile or the page from the page a user was redirected
+    const redirectPath = prevPath ? prevPath : `/profile/${userId}`;
+
+    history.push(redirectPath);
   }
 
   return (
     <>
       {!isAuth && (
-        <div>
+        <div className={s.loginContainer}>
           <h2>Login form</h2>
           <LoginForm />
         </div>
