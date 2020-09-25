@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar/Navbar";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import UsersContainer from "./components/Users/UsersContainer";
 import Login from "./components/Login/Login";
 import Header from "./components/Header/Header";
 import ProfileHook from "./components/Profile/ProfileHook";
@@ -14,6 +13,7 @@ import { Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { initializeApp } from "./redux/thunks";
 import LoadingSpinner from "./components/Common/LoadingSpinner";
+import Users from "./components/Users/Users";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ const App = () => {
               <Dialogues />
             </Route>
             <Route path="/users">
-              <UsersContainer />
+              <Users />
             </Route>
 
             <Route path="/login">

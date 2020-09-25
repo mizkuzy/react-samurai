@@ -16,7 +16,7 @@ const useCurrentProfileRedirect = () => {
   const currentPath = history.location.pathname;
 
   const path =
-    currentPath === profilePath || homePath
+    currentPath === profilePath || currentPath === homePath
       ? `${profilePath}/${userId}`
       : currentPath;
 

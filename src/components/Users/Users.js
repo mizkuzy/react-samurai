@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./Users.module.css";
 import UserItem from "./UserItem/UserItem";
 import LoadingSpinner from "../Common/LoadingSpinner";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  changePage,
+  followUser,
+  getUsers,
+  unfollowUser,
+} from "../../redux/thunks";
 
-// TODO FIX. In the first page only one user is shown
-const Paging = ({
-  totalElementsNumber,
-  pageSize,
-  pageNumber,
-  onChangePage,
-}) => {
+const Paging = () => {
+  const dispatch = useDispatch();
+
+  const onChangePage = (pageNumber) => {
+    dispatch(changePage(pageSize, pageNumber));
+  };
+
+  const totalElementsNumber = useSelector(
+    (state) => state.usersPage.totalUsersCount
+  );
+  const pageSize = useSelector((state) => state.usersPage.pageSize);
+  const pageNumber = useSelector((state) => state.usersPage.pageNumber);
+
   const pagesCount = Math.ceil(totalElementsNumber / pageSize);
 
   return [...Array(pagesCount).keys()].map((p) => {
@@ -30,33 +43,31 @@ const Paging = ({
   });
 };
 
-const Users = ({
-  totalUsersCount,
-  pageSize,
-  pageNumber,
-  onChangePage,
-  users,
-  followUser,
-  unfollowUser,
-  isFetching,
-}) => {
+const Users = () => {
+  const pageSize = useSelector((state) => state.usersPage.pageSize);
+  const pageNumber = useSelector((state) => state.usersPage.pageNumber);
+  const users = useSelector((state) => state.usersPage.users);
+
+  const isFetching = useSelector((state) => state.usersPage.isFetching);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUsers(pageSize, pageNumber));
+  }, []);
+
+  console.log("render Users");
   return (
     <>
       {isFetching && <LoadingSpinner />}
       <div className={s.usersContent}>
-        <Paging
-          totalElementsNumber={totalUsersCount}
-          pageSize={pageSize}
-          pageNumber={pageNumber}
-          onChangePage={onChangePage}
-        />
+        <Paging />
         <div className={s.content}>
           {users.map((u) => (
             <UserItem
               key={u.id}
               user={u}
-              followUser={followUser}
-              unfollowUser={unfollowUser}
+              followUser={dispatch(followUser)}
+              unfollowUser={dispatch(unfollowUser)}
             />
           ))}
         </div>
