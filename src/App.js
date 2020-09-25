@@ -23,10 +23,6 @@ const App = () => {
     dispatch(initializeApp());
   }, [dispatch]);
 
-  // useRedirect("/", "/users"); // TODO change to redirect profile with id
-  // useRedirect("/profile", "/users"); // TODO change to redirect profile with id
-  console.log("App isInitialized ", isInitialized);
-
   if (!isInitialized) {
     return <LoadingSpinner />;
   }

@@ -49,16 +49,10 @@ export const logout = () => async (dispatch) => {
 };
 
 export const processProfile = (uid) => async (dispatch) => {
-  let profileUid = uid;
-
-  if (!profileUid) {
-    profileUid = uid; // TODO GET logged in user id. Will be implemented later
-  }
-
-  const profile = await profileApi.getProfile(profileUid);
+  const profile = await profileApi.getProfile(uid);
   dispatch(setProfile(profile));
 
-  const status = await profileApi.getStatus(profileUid);
+  const status = await profileApi.getStatus(uid);
   dispatch(setStatus(status));
 };
 
